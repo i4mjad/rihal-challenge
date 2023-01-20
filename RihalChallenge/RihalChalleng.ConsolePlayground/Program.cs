@@ -12,8 +12,7 @@ public class Program
     public static void Main(string[] args)
     {
         //DI Container
-        var serviceProvider = new ServiceCollection()          
-            
+        var serviceProvider = new ServiceCollection()
             .AddScoped<IInMemoryDataSource, InMemoryDataSource>()
             .AddScoped<IStudentsRepository, InMemoryStudentsRepository>()
             .AddScoped<IGetStudentsPresenter, GetStudentsConsolePresenter>()
@@ -30,7 +29,7 @@ public class Program
         switch (input)
         {
             case "1":
-                ListAllUsers();
+                ListAllStudents(serviceProvider);
                 break;
         }
 
@@ -38,10 +37,10 @@ public class Program
 
     }
 
-    public static void ListAllUsers()
+    public static void ListAllStudents(ServiceProvider serviceProvider)
     {
-        var getAllUsersUseCase = new GetStudentsUseCase(new InMemoryStudentsRepository(new InMemoryDataSource()));
-        getAllUsersUseCase.Execute(new GetStudentsConsolePresenter());
+        var getAllStudentsUseCase = serviceProvider.GetService<IGetStudentsUseCase>();
+        getAllStudentsUseCase!.Execute(serviceProvider.GetService<IGetStudentsPresenter>()!);
     }
 
 
