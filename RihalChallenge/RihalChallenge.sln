@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RihalChallenge", "RihalChallenge\RihalChallenge.csproj", "{D20B0E4B-7C8A-4221-8999-EBB610876772}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RihalChallenge.Client", "RihalChallenge\RihalChallenge.Client.csproj", "{D20B0E4B-7C8A-4221-8999-EBB610876772}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RihalChalleng.ConsolePlayground", "RihalChalleng.ConsolePlayground\RihalChalleng.ConsolePlayground.csproj", "{75C3EB63-3BA3-44B2-AE55-2220E7FE4B9A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RihalChallenge.Domain", "RihalChallenge.Domain\RihalChallenge.Domain.csproj", "{603F5069-A1EC-42A6-B1E7-D522A85350B4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{D20B0E4B-7C8A-4221-8999-EBB610876772}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D20B0E4B-7C8A-4221-8999-EBB610876772}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D20B0E4B-7C8A-4221-8999-EBB610876772}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75C3EB63-3BA3-44B2-AE55-2220E7FE4B9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75C3EB63-3BA3-44B2-AE55-2220E7FE4B9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75C3EB63-3BA3-44B2-AE55-2220E7FE4B9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75C3EB63-3BA3-44B2-AE55-2220E7FE4B9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{603F5069-A1EC-42A6-B1E7-D522A85350B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{603F5069-A1EC-42A6-B1E7-D522A85350B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{603F5069-A1EC-42A6-B1E7-D522A85350B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{603F5069-A1EC-42A6-B1E7-D522A85350B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
