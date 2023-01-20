@@ -1,5 +1,4 @@
-﻿using System;
-namespace RihalChallenge.Domain.Entites;
+﻿namespace RihalChallenge.Domain.Entites;
 public class Class
 {	
 	public Guid Id { get; set; }

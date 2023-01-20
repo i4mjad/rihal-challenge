@@ -3,9 +3,9 @@ namespace RihalChallenge.Domain.Entities;
 public class Student
 {
     public Guid Id { get; set; }
-    public string Class { get; set; }
-    public string Country { get; set; }
-    public string Name { get; set; }
+    public string ClassName { get; set; }
+    public string CountryName { get; set; }
+    public string StudentName { get; set; }
     public DateTime DayOfBirth { get; set; }
 
 }
