@@ -13,7 +13,7 @@ public class Program
     {
         //DI Container
         var serviceProvider = new ServiceCollection()          
-            .AddSingleton<IFooService, BooService>()
+            
             .AddScoped<IInMemoryDataSource, InMemoryDataSource>()
             .AddScoped<IStudentsRepository, InMemoryStudentsRepository>()
             .AddScoped<IGetStudentsPresenter, GetStudentsConsolePresenter>()
@@ -46,26 +46,4 @@ public class Program
 
 
 
-}
-
-//TODO: For testing purposes, to be deleted
-interface IFooService
-{
-    void DoSomething();
-}
-
-public class FooService : IFooService
-{
-    public void DoSomething()
-    {
-        Console.WriteLine("Hello World");
-    }
-}
-
-public class BooService : IFooService
-{
-    public void DoSomething()
-    {
-        Console.WriteLine("Welcome to Rihal");
-    }
 }
