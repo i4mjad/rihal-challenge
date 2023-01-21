@@ -4,7 +4,8 @@ using RihalChallenge.ConsolePlayground;
 using RihalChallenge.Domain.DataSources;
 using RihalChallenge.Domain.Repositories;
 using RihalChallenge.Domain.Repositories.InMemory;
-using RihalChallenge.Domain.UseCases.GetStudentsUseCase;
+using RihalChallenge.Domain.UseCases.Students.GetStudentsUseCase;
+using RihalRihalChallenge.Domain.UseCases.Students.GetStudentsUseCase;
 
 
 public class Program

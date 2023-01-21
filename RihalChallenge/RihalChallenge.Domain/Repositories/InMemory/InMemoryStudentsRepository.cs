@@ -1,7 +1,6 @@
 ﻿using RihalChallenge.Domain.DataModels;
 using RihalChallenge.Domain.DataSources;
 using RihalChallenge.Domain.Entities;
-using RihalChallenge.Domain.UseCases.GetStudentsUseCase;
 
 namespace RihalChallenge.Domain.Repositories.InMemory;
 

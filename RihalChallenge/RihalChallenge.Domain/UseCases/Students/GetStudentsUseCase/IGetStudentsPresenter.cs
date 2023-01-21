@@ -1,4 +1,4 @@
-﻿namespace RihalChallenge.Domain.UseCases.GetStudentsUseCase;
+﻿namespace RihalChallenge.Domain.UseCases.Students.GetStudentsUseCase;
 
 public interface IGetStudentsPresenter
 {

@@ -1,4 +1,4 @@
-﻿using RihalChallenge.Domain.UseCases.GetStudentsUseCase;
+﻿using RihalChallenge.Domain.UseCases.Students.GetStudentsUseCase;
 
 namespace RihalChallenge.ConsolePlayground;
 public class GetStudentsConsolePresenter: IGetStudentsPresenter
