@@ -6,4 +6,5 @@ namespace RihalChallenge.Domain.Repositories;
 public interface ICountriesRepository
 {
     public Task<IEnumerable<Country>> GetAllCountries();
+    Task<Country> GetByName(string requestCountryName);
 }

@@ -9,4 +9,5 @@ namespace RihalChallenge.Domain.Repositories;
 public interface IStudentsRepository
 {
     public Task<IEnumerable<Student>> GetAllStudents();
+    public Task AddStudent(Student student);
 }
