@@ -1,6 +1,5 @@
 ﻿using RihalChallenge.Domain.Repositories;
 using RihalRihalChallenge.Domain.UseCases.Countries.GetCountriesUseCase;
-using RihalRihalChallenge.Domain.UseCases.Students.GetStudentsUseCase;
 
 namespace RihalChallenge.Domain.UseCases.Countries.GetCountriesUseCase;
 
