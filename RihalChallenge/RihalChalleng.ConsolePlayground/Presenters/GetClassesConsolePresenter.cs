@@ -1,7 +1,6 @@
 ﻿using RihalChallenge.Domain.UseCases.Classes.GetClassesUseCase;
-using RihalChallenge.Domain.UseCases.Students.GetStudentsUseCase;
 
-namespace RihalChallenge.ConsolePlayground;
+namespace RihalChallenge.ConsolePlayground.Presenters;
 
 public class GetClassesConsolePresenter: IGetClassesPresenter
 {

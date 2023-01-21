@@ -1,6 +1,6 @@
 ﻿using RihalChallenge.Domain.UseCases.Countries.GetCountriesUseCase;
 
-namespace RihalChallenge.ConsolePlayground;
+namespace RihalChallenge.ConsolePlayground.Presenters;
 
 public class GetCountriesConsolePresenter: IGetCountriesPresenter
 {
