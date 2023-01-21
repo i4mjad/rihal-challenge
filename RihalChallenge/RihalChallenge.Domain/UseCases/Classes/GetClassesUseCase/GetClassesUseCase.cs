@@ -1,5 +1,4 @@
 ﻿using RihalChallenge.Domain.Repositories;
-using RihalChallenge.Domain.UseCases.Classes.GetStudentsUseCase;
 
 namespace RihalChallenge.Domain.UseCases.Classes.GetClassesUseCase;
 

@@ -10,10 +10,10 @@ public class GetStudentsUseCase : IGetStudentsUseCase
     {
         _studentsRepository = studentsRepository;
     }
-    public async Task Execute(IGetStudentsPresenter createUserPresenter)
+    public async Task Execute(IGetStudentsPresenter getStudentsPresenter)
     {
         var allStudents = await _studentsRepository.GetAllStudents();
 
-        createUserPresenter.Success(new GetStudentsResponse(allStudents));
+        getStudentsPresenter.Success(new GetStudentsResponse(allStudents));
     }
 }

@@ -1,6 +1,4 @@
-﻿using RihalChallenge.Domain.UseCases.Classes.GetStudentsUseCase;
-
-namespace RihalChallenge.Domain.UseCases.Classes.GetClassesUseCase;
+﻿namespace RihalChallenge.Domain.UseCases.Classes.GetClassesUseCase;
 
 public interface IGetClassesPresenter
 {
