@@ -13,4 +13,5 @@ public interface IStudentsRepository
 
     public Task UpdateStudent(Guid id, string newName, Guid newClassId, Guid newCountryId, DateTime newDayOfBirth);
     public Task<Student> GetStudent(Guid id);
+    public Task DeleteStudent(Guid id);
 }

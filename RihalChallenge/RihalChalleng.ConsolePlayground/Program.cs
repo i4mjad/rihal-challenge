@@ -8,6 +8,7 @@ using RihalChallenge.Domain.Repositories.InMemory;
 using RihalChallenge.Domain.UseCases.Classes.GetClassesUseCase;
 using RihalChallenge.Domain.UseCases.Countries.GetCountriesUseCase;
 using RihalChallenge.Domain.UseCases.Students.AddStudentUseCase;
+using RihalChallenge.Domain.UseCases.Students.DeleteStudentUseCase;
 using RihalChallenge.Domain.UseCases.Students.GetStudentsUseCase;
 using RihalChallenge.Domain.UseCases.Students.UpdateStudentUseCase;
 using RihalRihalChallenge.Domain.UseCases.Countries.GetCountriesUseCase;
@@ -42,6 +43,10 @@ public class Program
             .AddScoped<IUpdateStudentPresenter, UpdateStudentConsolePresenter>()
             .AddScoped<IUpdateStudentUseCase, UpdateStudentUseCase>()
 
+            //
+            .AddScoped<IDeleteStudentPresenter, DeleteStudentConsolePresenter>()
+            .AddScoped<IDeleteStudentUseCase, DeleteStudentUseCase>()
+
 
             .BuildServiceProvider();
 
@@ -55,6 +60,7 @@ public class Program
             Console.WriteLine("3. Get All Countries");
             Console.WriteLine("4. Add student");
             Console.WriteLine("5. Update student");
+            Console.WriteLine("6. Delte student");
             Console.WriteLine("--------------------------------");
             var input = Console.ReadLine();
 
@@ -74,6 +80,9 @@ public class Program
                     break;
                 case "5":
                     UpdateStudent(serviceProvider);
+                    break;
+                case "6":
+                    DeleteStudent(serviceProvider);
                     break;
 
 
@@ -111,7 +120,20 @@ public class Program
         var request = new AddStudentRequest(nameInput!,countryIdInput!,classIdInput!);
         
         var addStudentUseCase = serviceProvider.GetService<IAddStudentUseCase>();
+       
         addStudentUseCase!.Execute(request,serviceProvider.GetService<IAddStudentPresenter>()!);
+    }
+    
+    private static void DeleteStudent(ServiceProvider serviceProvider)
+    {
+        Console.WriteLine("Enter student Id");
+        var studentIdInput = Console.ReadLine();
+        
+        var request = new DeleteStudentRequest(Guid.Parse(studentIdInput!));
+        
+        var deleteStudentUseCase = serviceProvider.GetService<IDeleteStudentUseCase>();
+       
+        deleteStudentUseCase!.Execute(request,serviceProvider.GetService<IDeleteStudentPresenter>()!);
     }
 
     private static void UpdateStudent(ServiceProvider serviceProvider)

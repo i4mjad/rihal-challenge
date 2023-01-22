@@ -79,6 +79,15 @@ public class InMemoryStudentsRepository: IStudentsRepository
         return Task.FromResult(student);
     }
 
+    public Task DeleteStudent(Guid id)
+    {
+        var studentsDataModels = _inMemoryDataSource.StudentsDataSet().GetAll();
+        var studentDataModel = studentsDataModels.First(student => student.Id == id);
+        
+        _inMemoryDataSource.StudentsDataSet().Delete(studentDataModel);
+        return Task.CompletedTask;
+    }
+
     private string GetClassName(Guid classId)
     {
         var classesDataModels = _inMemoryDataSource.ClassDataSet().GetAll();
