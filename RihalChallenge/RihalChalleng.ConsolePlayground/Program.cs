@@ -9,6 +9,7 @@ using RihalChallenge.Domain.UseCases.Classes.GetClassesUseCase;
 using RihalChallenge.Domain.UseCases.Countries.GetCountriesUseCase;
 using RihalChallenge.Domain.UseCases.Students.AddStudentUseCase;
 using RihalChallenge.Domain.UseCases.Students.GetStudentsUseCase;
+using RihalChallenge.Domain.UseCases.Students.UpdateStudentUseCase;
 using RihalRihalChallenge.Domain.UseCases.Countries.GetCountriesUseCase;
 
 namespace RihalChallenge.ConsolePlayground;
@@ -37,6 +38,10 @@ public class Program
             //
             .AddScoped<IAddStudentPresenter, AddStudentConsolePresenter>()
             .AddScoped<IAddStudentUseCase, AddStudentUseCase>()
+            //
+            .AddScoped<IUpdateStudentPresenter, UpdateStudentConsolePresenter>()
+            .AddScoped<IUpdateStudentUseCase, UpdateStudentUseCase>()
+
 
             .BuildServiceProvider();
 
@@ -49,6 +54,7 @@ public class Program
             Console.WriteLine("2. Get All Classes");
             Console.WriteLine("3. Get All Countries");
             Console.WriteLine("4. Add student");
+            Console.WriteLine("5. Update student");
             Console.WriteLine("--------------------------------");
             var input = Console.ReadLine();
 
@@ -64,10 +70,13 @@ public class Program
                     ListAllCountries(serviceProvider);
                     break;
                 case "4":
-                    AddUser(serviceProvider);
+                    AddStudent(serviceProvider);
                     break;
-                
-                
+                case "5":
+                    UpdateStudent(serviceProvider);
+                    break;
+
+
             }
         }
     }
@@ -88,21 +97,45 @@ public class Program
         var getAllCountriesUseCase = serviceProvider.GetService<IGetCountriesUseCase>();
         getAllCountriesUseCase!.Execute(serviceProvider.GetService<IGetCountriesPresenter>()!);
     }
-    private static void AddUser(ServiceProvider serviceProvider)
+    private static void AddStudent(ServiceProvider serviceProvider)
     {
         Console.WriteLine("Enter Name of the student");
         var nameInput = Console.ReadLine();
         
-        Console.WriteLine("Enter Name of the student's class");
-        var classInput = Console.ReadLine();
+        Console.WriteLine("Enter Name of the student's class Id");
+        var classIdInput = Console.ReadLine();
         
-        Console.WriteLine("Enter Name of the student's country");
-        var countryInput = Console.ReadLine();
+        Console.WriteLine("Enter Name of the student's country Id");
+        var countryIdInput = Console.ReadLine();
 
-        var request = new AddStudentRequest(nameInput!,countryInput!,classInput!);
+        var request = new AddStudentRequest(nameInput!,countryIdInput!,classIdInput!);
         
         var addStudentUseCase = serviceProvider.GetService<IAddStudentUseCase>();
         addStudentUseCase!.Execute(request,serviceProvider.GetService<IAddStudentPresenter>()!);
+    }
+
+    private static void UpdateStudent(ServiceProvider serviceProvider)
+    {
+        Console.WriteLine("Enter Id of the student");
+        var idInput = Console.ReadLine();
+
+        Console.WriteLine("Enter Name of the student");
+        var nameInput = Console.ReadLine();
+
+        Console.WriteLine("Enter Name of the student's class");
+        var classInput = Console.ReadLine();
+
+        Console.WriteLine("Enter Name of the student's country");
+        var countryInput = Console.ReadLine();
+
+
+        //FOR TESTING PURPOSES
+        //Humaid: 472e3f1b-08a4-4e02-864e-a4283f576723
+        //Amjad: 7e97c858-113c-4214-b9c4-626858f2d8e3
+        var request = new UpdateStudentRequest(Guid.Parse(idInput!), nameInput!, countryInput!, classInput!);
+
+        var updateStudentUseCase = serviceProvider.GetService<IUpdateStudentUseCase>();
+        updateStudentUseCase!.Execute(request, serviceProvider.GetService<IUpdateStudentPresenter>()!);
     }
 
 }
