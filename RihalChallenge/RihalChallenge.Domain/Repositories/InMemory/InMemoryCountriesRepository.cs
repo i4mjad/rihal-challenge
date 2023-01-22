@@ -19,15 +19,18 @@ public class InMemoryCountriesRepository: ICountriesRepository
         return Task.FromResult(allStudentsDataModel.Select(GetCountriesFromDataModel));
     }
 
-    public Task<Country> GetByName(string requestCountryName)
+    public Task<Country> GetById(string countryId)
     {
-        var countryDataModel = _inMemoryDataSource.CountryDataSet().GetAll().First(x => x.Name == requestCountryName);
-        var model = new Country()
-        {
-            Id = countryDataModel.Id,
-            Name = countryDataModel.Name
-        };
-        return Task.FromResult(model);
+        
+            var countriesDataModels = _inMemoryDataSource.CountryDataSet().GetAll();
+            var countryDataModel = countriesDataModels.First(x => x.Id == Guid.Parse(countryId));
+            var country = new Country()
+            {
+                Id = countryDataModel.Id,
+                Name = countryDataModel.Name
+            };
+            return Task.FromResult(country);
+        
     }
 
     private Country GetCountriesFromDataModel(CountryDataModel countryDataModel)

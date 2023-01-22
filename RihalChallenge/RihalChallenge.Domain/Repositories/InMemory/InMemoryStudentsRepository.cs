@@ -27,19 +27,19 @@ public class InMemoryStudentsRepository: IStudentsRepository
             Id = studentDataModel.Id,
             DayOfBirth = studentDataModel.DayOfBirth,
             StudentName = studentDataModel.Name,
-            Class = GetClass(studentDataModel.ClassId),
-            Country = GetCountry(studentDataModel.CountryId)
+            ClassName = GetClassName(studentDataModel.ClassId),
+            CountryName = GetCountryName(studentDataModel.CountryId)
         };
     }
     
-    public Task AddStudent(Student student)
+    public Task AddStudent(Student student, Guid classId, Guid countryId)
     {
         var studentDataModel = new StudentDataModel()
         {
             Id = student.Id,
             Name = student.StudentName,
-            CountryId = student.Country.Id,
-            ClassId = student.Class.Id,
+            CountryId = countryId,
+            ClassId = classId,
             DayOfBirth = new DateTime(1998,08,28)
         };
          _inMemoryDataSource.StudentsDataSet().Add(studentDataModel);
@@ -47,25 +47,49 @@ public class InMemoryStudentsRepository: IStudentsRepository
         return Task.CompletedTask;
     }
 
-    private Class GetClass(Guid classId)
+    public Task UpdateStudent(Guid id, string newName, Guid newClassId, Guid newCountryId, DateTime newDayOfBirth)
+    {
+        var studentDataModels = _inMemoryDataSource.StudentsDataSet().GetAll();
+        var currentStudent = studentDataModels.FirstOrDefault(x=>x.Id == id);
+
+        var updatedStudent = new StudentDataModel()
+        {
+            Id = id,
+            CountryId = newCountryId,
+            Name = newName,
+            ClassId = newClassId,
+            DayOfBirth = newDayOfBirth
+        }; 
+        _inMemoryDataSource.StudentsDataSet().Update(currentStudent!,updatedStudent);
+
+        return Task.CompletedTask;
+    }
+
+    public Task<Student> GetStudent(Guid id)
+    {
+        var studentsDataModels = _inMemoryDataSource.StudentsDataSet().GetAll();
+        var studentDataModel = studentsDataModels.First(student => student.Id == id);
+        var student = new Student()
+        {
+            Id = studentDataModel.Id,
+            StudentName = studentDataModel.Name,
+            ClassName = GetClassName(studentDataModel.ClassId),
+            CountryName = GetCountryName(studentDataModel.CountryId)
+        };
+        return Task.FromResult(student);
+    }
+
+    private string GetClassName(Guid classId)
     {
         var classesDataModels = _inMemoryDataSource.ClassDataSet().GetAll();
         var classDataModel = classesDataModels.First(x => x.Id == classId);
-        return new Class()
-        {
-            Id = classDataModel.Id,
-            Name = classDataModel.Name
-        };
+        return classDataModel.Name;
     }
 
-    private Country GetCountry(Guid countryId)
+    private string GetCountryName(Guid countryId)
     {
         var countriesDataModels = _inMemoryDataSource.CountryDataSet().GetAll();
         var countryDataModel = countriesDataModels.First(x => x.Id == countryId);
-        return new Country()
-        {
-            Id = countryDataModel.Id,
-            Name = countryDataModel.Name
-        };
+        return countryDataModel.Name;
     }
 }

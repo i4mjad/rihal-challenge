@@ -19,10 +19,10 @@ public class InMemoryClassesRepository: IClassesRepository
         return Task.FromResult(allStudentsDataModel.Select(GetClassesFromDataModel));
     }
 
-    public Task<Class> GetByName(string requestClassName)
+    public Task<Class> GetById(string classId)
     {
         var classesDataModels = _inMemoryDataSource.ClassDataSet().GetAll();
-        var classDataModel = classesDataModels.First(x => x.Name == requestClassName);
+        var classDataModel = classesDataModels.First(x => x.Id == Guid.Parse(classId));
         var model = new Class()
         {
             Id = classDataModel.Id,

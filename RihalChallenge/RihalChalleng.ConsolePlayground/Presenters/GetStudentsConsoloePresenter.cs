@@ -8,7 +8,7 @@ public class GetStudentsConsolePresenter: IGetStudentsPresenter
         var students = response.Students.ToList();
         foreach (var student in students)
         {
-            Console.WriteLine($"Name: {student.StudentName}, Class: {student.Class.Name}, Country: {student.Country.Name}, Date of birth: {student.DayOfBirth}");
+            Console.WriteLine($"Id: {student.Id} Name: {student.StudentName}, Class: {student.ClassName}, Country: {student.CountryName}, Date of birth: {student.DayOfBirth}");
         }
     }
 
@@ -17,4 +17,3 @@ public class GetStudentsConsolePresenter: IGetStudentsPresenter
         throw new NotImplementedException();
     }
 }
-

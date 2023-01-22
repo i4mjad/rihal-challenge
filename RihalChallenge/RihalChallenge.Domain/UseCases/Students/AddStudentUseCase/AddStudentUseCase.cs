@@ -1,5 +1,4 @@
-﻿using RihalChallenge.Domain.DataModels;
-using RihalChallenge.Domain.Entites;
+﻿
 using RihalChallenge.Domain.Entities;
 using RihalChallenge.Domain.Repositories;
 
@@ -20,17 +19,17 @@ public class AddStudentUseCase : IAddStudentUseCase
     }
     public async Task Execute(AddStudentRequest request, IAddStudentPresenter addStudentPresenter)
     {
-        var studentClass = await _classesRepository.GetByName(request.className);
-        var studentCountry = await _countriesRepository.GetByName(request.countryName);
+        var studentClass = await _classesRepository.GetById(request.classId);
+        var studentCountry = await _countriesRepository.GetById(request.countryId);
 
         var student = new Student()
         {
             Id = Guid.NewGuid(),
             StudentName = request.name,
-            Class = studentClass,
-            Country = studentCountry
+            ClassName = studentClass.Name,
+            CountryName = studentCountry.Name
         };
-        await _studentsRepository.AddStudent(student);
+        await _studentsRepository.AddStudent(student, Guid.Parse(request.classId), Guid.Parse(request.countryId));
         var cake = await _studentsRepository.GetAllStudents();
         addStudentPresenter.Success(new AddStudentResponse(student.Id));
     }
