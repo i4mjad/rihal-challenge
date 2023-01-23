@@ -1,13 +1,14 @@
-﻿@page "/fetchdata"
-
-<PageTitle>Weather forecast</PageTitle>
-
+﻿@page "/students"
 @using RihalChallenge.Data
+@using RihalChallenge.Client.Stores.StudentsStore
+
+@inject IDispatcher Dispatcher
+@inject IState<WeatherState> StudentState
 @inject WeatherForecastService ForecastService
 
-<h1>Weather forecast</h1>
+<PageTitle>Students</PageTitle>
 
-<p>This component demonstrates fetching data from a service.</p>
+<h1>Students List</h1>
 
 @if (forecasts == null)
 {
@@ -25,7 +26,7 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var forecast in forecasts)
+            @foreach (var forecast in StudentState.Value.Weather)
             {
                 <tr>
                     <td>@forecast.Date.ToShortDateString()</td>
@@ -45,4 +46,10 @@ else
     {
         forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
     }
+
+    private void GetStudents()
+    {
+        Dispatcher.Dispatch(new GetWeatherAction());
+    }
+
 }
