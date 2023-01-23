@@ -1,5 +1,4 @@
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
+using Fluxor;
 using Microsoft.OpenApi.Models;
 using RihalChallenge.Data;
 
@@ -15,6 +14,10 @@ builder.Services.AddSwaggerGen(c =>
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "API Test", Version = "v1" });
 });
 
+builder.Services.AddFluxor(o =>
+{
+    o.ScanAssemblies(typeof(Program).Assembly);
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
