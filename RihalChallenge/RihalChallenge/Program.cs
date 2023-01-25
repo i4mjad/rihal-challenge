@@ -1,6 +1,11 @@
 using Fluxor;
 using Microsoft.OpenApi.Models;
+using RihalChallenge.Client.Presenters;
 using RihalChallenge.Data;
+using RihalChallenge.Domain.DataSources;
+using RihalChallenge.Domain.Repositories;
+using RihalChallenge.Domain.Repositories.InMemory;
+using RihalChallenge.Domain.UseCases.Students.GetStudentsUseCase;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +13,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
+builder.Services.AddSingleton<IInMemoryDataSource, InMemoryDataSource>();
+builder.Services.AddSingleton<IGetStudentsUseCase, GetStudentsUseCase>();
+builder.Services.AddSingleton<IStudentsRepository, InMemoryStudentsRepository>();
+builder.Services.AddScoped<IGetStudentsUseCase, GetStudentsUseCase>();
+builder.Services.AddSingleton<IGetStudentBlazorPresenter, GetStudentsGetStudentBlazorPresenter>();
+// builder.Services.AddSingleton(typeof(IBlazorPresenter<>), typeof());
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen(c =>
 {

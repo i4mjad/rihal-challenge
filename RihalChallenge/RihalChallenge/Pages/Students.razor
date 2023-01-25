@@ -1,55 +1,43 @@
 ﻿@page "/students"
-@using RihalChallenge.Data
-@using RihalChallenge.Client.Stores.StudentsStore
 
+@using RihalChallenge.Client.Stores.StudentsStore
 @inject IDispatcher Dispatcher
-@inject IState<WeatherState> StudentState
-@inject WeatherForecastService ForecastService
+@inject IState<StudentsState> StudentState
+
 
 <PageTitle>Students</PageTitle>
 
 <h1>Students List</h1>
 
-@if (forecasts == null)
-{
-    <p><em>Loading...</em></p>
-}
-else
-{
-    <table class="table">
+<table class="table">
         <thead>
             <tr>
-                <th>Date</th>
-                <th>Temp. (C)</th>
-                <th>Temp. (F)</th>
-                <th>Summary</th>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Class</th>
+                <th>Country</th>
+                <th>Day of Birth</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var forecast in StudentState.Value.Weather)
+            @foreach (var forecast in StudentState.Value.StudentsClientResponse.Students)
             {
                 <tr>
-                    <td>@forecast.Date.ToShortDateString()</td>
-                    <td>@forecast.TemperatureC</td>
-                    <td>@forecast.TemperatureF</td>
-                    <td>@forecast.Summary</td>
+                    <td>@forecast.Id</td>
+                    <td>@forecast.StudentName</td>
+                    <td>@forecast.ClassName</td>
+                    <td>@forecast.CountryName</td>
+                    <td>@forecast.DayOfBirth</td>
                 </tr>
             }
         </tbody>
     </table>
-}
 
 @code {
-    private WeatherForecast[]? forecasts;
-
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
-        forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
-    }
-
-    private void GetStudents()
-    {
-        Dispatcher.Dispatch(new GetWeatherAction());
+        base.OnInitialized();
+        Dispatcher.Dispatch(new GetStudentsAction());
     }
 
 }
