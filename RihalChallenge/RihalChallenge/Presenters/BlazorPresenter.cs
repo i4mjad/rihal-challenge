@@ -5,10 +5,10 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 namespace RihalChallenge.Client.Presenters;
 
-public class GetStudentsGetStudentBlazorPresenter: IGetStudentBlazorPresenter
+public class BlazorPresenter<T>: IBlazorPresenter<T>
 {
-    private GetStudentsResponse domainResponse { get; set; }
-    public void Success(GetStudentsResponse response)
+    private T domainResponse { get; set; }
+    public void Success(T response)
     {
         domainResponse = response;
     }
@@ -18,7 +18,7 @@ public class GetStudentsGetStudentBlazorPresenter: IGetStudentBlazorPresenter
         throw new NotImplementedException();
     }
 
-    public IActionResult GetJsonResponse()
+    public ActionResult GetJsonResponse()
     {
         return new OkObjectResult(domainResponse);
     }
@@ -27,10 +27,5 @@ public class GetStudentsGetStudentBlazorPresenter: IGetStudentBlazorPresenter
     {
         string jsonString = JsonSerializer.Serialize(domainResponse);
         return jsonString;
-    }
-
-    ActionResult IGetStudentBlazorPresenter.GetJsonResponse()
-    {
-        throw new NotImplementedException();
     }
 }
