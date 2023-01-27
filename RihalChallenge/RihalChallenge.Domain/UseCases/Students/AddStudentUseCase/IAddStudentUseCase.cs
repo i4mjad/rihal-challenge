@@ -1,6 +1,5 @@
 ﻿
 namespace RihalChallenge.Domain.UseCases.Students.AddStudentUseCase;
-public interface IAddStudentUseCase
+public interface IAddStudentUseCase: IUseCase<AddStudentRequest,AddStudentResponse>
 {
-    Task Execute(AddStudentRequest request, IAddStudentPresenter addStudentPresenter);
 }

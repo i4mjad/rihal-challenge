@@ -9,7 +9,7 @@ public class GetClassesUseCase : IGetClassesUseCase
     {
         _classesRepository = classesRepository;
     }
-    public async Task Execute(IGetClassesPresenter getClassesPresenter)
+    public async Task Execute(IPresenter<GetClassesResponse> getClassesPresenter)
     {
         var allClasses = await _classesRepository.GetAllClasses();
 

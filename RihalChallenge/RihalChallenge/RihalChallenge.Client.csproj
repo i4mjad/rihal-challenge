@@ -10,11 +10,10 @@
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'RihalChallenge' " />
 
   <ItemGroup>
+    <PackageReference Include="Autofac" Version="6.5.0" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
-    <PackageReference Include="Autofac.Mvc5" Version="6.1.0" />
     <PackageReference Include="Fluxor" Version="5.7.0" />
     <PackageReference Include="Fluxor.Blazor.Web" Version="5.7.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
   <ItemGroup>

@@ -93,7 +93,7 @@ public class Program
     private static void ListAllStudents(ServiceProvider serviceProvider)
     {
         var getAllStudentsUseCase = serviceProvider.GetService<IGetStudentsUseCase>();
-        getAllStudentsUseCase!.Execute(serviceProvider.GetService<IGetStudentsPresenter>()!);
+        //getAllStudentsUseCase!.Execute(serviceProvider.GetService<IGetStudentsPresenter>()!);
     }
 
     private static void ListAllClasses(ServiceProvider serviceProvider)
@@ -133,7 +133,7 @@ public class Program
         
         var deleteStudentUseCase = serviceProvider.GetService<IDeleteStudentUseCase>();
        
-        deleteStudentUseCase!.Execute(request,serviceProvider.GetService<IDeleteStudentPresenter>()!);
+        //deleteStudentUseCase!.Execute(request,serviceProvider.GetService<IDeleteStudentPresenter>()!);
     }
 
     private static void UpdateStudent(ServiceProvider serviceProvider)

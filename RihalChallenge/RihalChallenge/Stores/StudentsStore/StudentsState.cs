@@ -7,11 +7,15 @@ namespace RihalChallenge.Client.Stores.StudentsStore;
 public class StudentsState
 {
     public StudentsState() { } // Required for creating initial state
-    public GetStudentsClientResponse StudentsClientResponse { get; }
-    
-    
-    public StudentsState(GetStudentsClientResponse studentsClientResponse)
+
+    public IEnumerable<Student>? Students { get; } 
+    public bool? IsLoading { get; }
+
+
+
+    public StudentsState(IEnumerable<Student>? students, bool? isLoading)
     {
-        StudentsClientResponse = studentsClientResponse;
+        Students = students;
+        IsLoading = isLoading;
     }
 }

@@ -1,6 +1,5 @@
 ﻿
 namespace RihalChallenge.Domain.UseCases.Students.DeleteStudentUseCase;
-public interface IDeleteStudentUseCase
+public interface IDeleteStudentUseCase: IUseCase<DeleteStudentRequest, DeleteStudentResponse>
 {
-    Task Execute(DeleteStudentRequest request, IDeleteStudentPresenter addStudentPresenter);
 }

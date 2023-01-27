@@ -1,0 +1,71 @@
+﻿@page "/add-student"
+@using Microsoft.AspNetCore.Components
+@using RihalChallenge.Client.Forms
+@using RihalChallenge.Client.Stores.ClassesStore
+@using RihalChallenge.Client.Stores.ClassesStore.GetClasses
+@using RihalChallenge.Client.Stores.Countries
+@using RihalChallenge.Client.Stores.Countries.GetCountries
+@inject IDispatcher Dispatcher
+@inject IState<ClassesState> ClassesState
+@inject IState<CountriesState> CountriesState
+<h3>AddStudent</h3>
+
+<NavLink class="nav-link" href="students">
+    <span class="oi oi-list-rich" aria-hidden="true"></span> Back
+</NavLink>
+
+<EditForm Model="@exampleModel" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    
+    <div>
+        <h5>Name</h5>
+        <InputText id="name" @bind-Value="exampleModel.Name"> Name </InputText>
+    </div>
+    <br/>
+    <div>
+        <h5>Day of birth</h5>
+        <InputDate id="dob" @bind-Value="exampleModel.DayOfBirth"> Day of Birth </InputDate>
+    </div>
+    
+    <div>
+        <h5>Class</h5>
+        <InputSelect id="class" @bind-Value="exampleModel.ClassId">
+            @foreach(var studentClass in ClassesState.Value.Classes)
+            {
+                <option value="@studentClass.Id">@studentClass.Name</option>
+            }
+        </InputSelect>
+    </div>
+    
+    <div>
+        <h5>Country</h5>
+        <InputSelect id="country" @bind-Value="exampleModel.CountryId">
+            @foreach(var country in CountriesState.Value.Countries)
+            {
+                <option value="@country.Id">@country.Name</option>
+            }
+
+        </InputSelect>
+    </div>
+    
+
+    <button type="submit">Submit</button>
+</EditForm>
+
+@code {
+
+    private ExampleModel exampleModel = new();
+    
+    protected override void OnInitialized()
+    {
+        base.OnInitializedAsync();
+        Dispatcher.Dispatch(new GetClassesAction());
+        Dispatcher.Dispatch(new GetCountriesAction());
+    }
+
+    private void HandleValidSubmit()
+    {
+        
+    }
+}

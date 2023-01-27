@@ -1,6 +1,3 @@
 ﻿
 namespace RihalChallenge.Domain.UseCases.Classes.GetClassesUseCase;
-public interface IGetClassesUseCase
-{
-    Task Execute(IGetClassesPresenter getClassesPresenter);
-}
+public interface IGetClassesUseCase: IUseCase<GetClassesResponse>{}

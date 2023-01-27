@@ -17,7 +17,7 @@ public class AddStudentUseCase : IAddStudentUseCase
         _countriesRepository = countriesRepository;
         _classesRepository = classesRepository;
     }
-    public async Task Execute(AddStudentRequest request, IAddStudentPresenter addStudentPresenter)
+    public async Task Execute(AddStudentRequest request, IPresenter<AddStudentResponse> addStudentPresenter)
     {
         var studentClass = await _classesRepository.GetById(request.classId);
         var studentCountry = await _countriesRepository.GetById(request.countryId);
