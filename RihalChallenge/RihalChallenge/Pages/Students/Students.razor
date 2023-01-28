@@ -57,14 +57,11 @@ else
         //base.OnInitialized();
         Dispatcher.Dispatch(new GetStudentsAction());
     }
-
-
+    
     protected void DeleteStudent(Guid id)
     {
         Dispatcher.Dispatch(new DeleteStudentAction(id));
     }
-
-
 }
 
 

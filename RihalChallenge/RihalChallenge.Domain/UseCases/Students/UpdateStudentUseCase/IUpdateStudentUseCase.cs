@@ -1,7 +1,6 @@
 ﻿
 
 namespace RihalChallenge.Domain.UseCases.Students.UpdateStudentUseCase;
-public interface IUpdateStudentUseCase
+public interface IUpdateStudentUseCase: IUseCase<UpdateStudentRequest,UpdateStudentResponse>
 {
-    Task Execute(UpdateStudentRequest request, IUpdateStudentPresenter updateStudentPresenter);
 }

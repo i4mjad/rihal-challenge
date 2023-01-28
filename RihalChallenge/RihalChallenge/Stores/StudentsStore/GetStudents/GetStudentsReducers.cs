@@ -7,11 +7,11 @@ public static class GetStudentsReducers
     [ReducerMethod]
     public static StudentsState ReduceGetStudentsAction(StudentsState state, GetStudentsResultAction action)
     {
-        return new StudentsState(isLoading:true, students:null);
+        return new StudentsState(isLoading:true, students:null, selectedStudent:null);
     }
     
     [ReducerMethod]
     public static StudentsState ReduceGetStudentsSuccessAction(StudentsState state, GetStudentsResultAction action) =>
-        new StudentsState(isLoading: false, students: action.Students);
+        new StudentsState(isLoading: false, students: action.Students, selectedStudent:null);
 
 }

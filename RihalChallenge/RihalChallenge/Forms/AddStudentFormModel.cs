@@ -2,7 +2,7 @@
 
 namespace RihalChallenge.Client.Forms
 {
-    public class ExampleModel
+    public class AddStudentFormModel
     {
         [Required]
         public string Name { get; set; }

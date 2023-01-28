@@ -7,12 +7,12 @@ public static class AddStudentReducer
     [ReducerMethod]
     public static StudentsState ReduceAddStudentAction(StudentsState state, AddStudentAction action)
     {
-        return new StudentsState(state.Students,true);
+        return new StudentsState(state.Students,true, null);
     }
 
     [ReducerMethod]
     public static StudentsState ReduceAddStudentResultAction(StudentsState state, AddStudentResultAction action)
     {
-        return new StudentsState(state.Students, false);
+        return new StudentsState(state.Students, false, null);
     }
 }
