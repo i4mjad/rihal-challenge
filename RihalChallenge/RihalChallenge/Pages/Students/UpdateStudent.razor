@@ -1,0 +1,83 @@
+﻿@page "/update-student/{Id:guid}"
+@using Microsoft.AspNetCore.Components
+@using RihalChallenge.Client.Forms
+@using RihalChallenge.Client.Stores.ClassesStore
+@using RihalChallenge.Client.Stores.ClassesStore.GetClasses
+@using RihalChallenge.Client.Stores.Countries
+@using RihalChallenge.Client.Stores.Countries.GetCountries
+@using RihalChallenge.Client.Stores.StudentsStore.AddStudent
+@inject IDispatcher Dispatcher
+@inject IState<ClassesState> ClassesState
+@inject IState<CountriesState> CountriesState
+<h3>Update Student</h3>
+
+
+
+<EditForm Model="@formModel" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    
+    <div>
+        <label for="name" class="form-label">Name</label>
+        <InputText id="name" class="form-control" @bind-Value="formModel.Name"> Name </InputText>
+    </div>
+    <br/>
+    <div>
+        <label for="dob" class="form-label">Day of birth</label>
+        <InputDate id="dob" @bind-Value="formModel.DayOfBirth" class="form-control"> Day of Birth </InputDate>
+    </div>
+    <br/>
+    <div>
+        <label for="class">Class</label>
+        <InputSelect id="class" @bind-Value="formModel.ClassId" class="form-select">
+            @foreach(var studentClass in ClassesState.Value.Classes)
+            {
+                <option value="@studentClass.Id">@studentClass.Name</option>
+            }
+        </InputSelect>
+    </div>
+    <br/>
+    <div>
+        <label for="country">Country</label>
+        <InputSelect id="country" class="form-select" @bind-Value="formModel.CountryId">
+            @foreach(var country in CountriesState.Value.Countries)
+            {
+                <option value="@country.Id">@country.Name</option>
+            }
+
+        </InputSelect>
+    </div>
+        <br/>
+    <div>
+        
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <NavLink class="nav-link" href="students">
+            <button class="btn btn-secondary">Back</button>
+        </NavLink>
+        
+    </div>
+</EditForm>
+
+@code {
+    
+    [Parameter]
+    public Guid Id { get; set; }
+    
+    private ExampleModel formModel = new();
+    
+    protected override void OnInitialized()
+    {
+        base.OnInitializedAsync();
+        //Setting the default selected date to today date
+        //TODO: Add a new property in the store called 'SelectedStudent'
+        formModel.DayOfBirth = DateTime.Now;
+        Dispatcher.Dispatch(new GetClassesAction());
+        Dispatcher.Dispatch(new GetCountriesAction());
+    }
+
+    private void HandleValidSubmit()
+    {
+        //TODO: change to update user action
+        Dispatcher.Dispatch(new AddStudentAction(formModel.CountryId,formModel.ClassId, formModel.Name, formModel.DayOfBirth));
+    }
+}
