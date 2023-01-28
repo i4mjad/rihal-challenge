@@ -31,6 +31,40 @@ public class InMemoryClassesRepository: IClassesRepository
         return Task.FromResult(model);
     }
 
+    public Task AddClass(Class newClass)
+    {
+        _inMemoryDataSource.ClassDataSet().Add(new ClassDataModel()
+        {
+            Id = newClass.Id,
+            Name = newClass.Name
+        });
+
+        return Task.CompletedTask;
+    }
+
+    public Task DeleteClass(Guid classId)
+    {
+        var getAllClasses = _inMemoryDataSource.ClassDataSet().GetAll();
+        var classDataModel = getAllClasses.First(x => x.Id == classId);
+        _inMemoryDataSource.ClassDataSet().Delete(classDataModel);
+        
+        return Task.CompletedTask;
+    }
+
+    public Task UpdateClass(Guid id, string newName)
+    {
+        var classesDataModels = _inMemoryDataSource.ClassDataSet().GetAll();
+        var currentStudent = classesDataModels.FirstOrDefault(x => x.Id == id);
+        var updatedClass = new ClassDataModel()
+        {
+            Id = id,
+            Name = newName,
+        };
+
+        _inMemoryDataSource.ClassDataSet().Update(currentStudent!,updatedClass);
+        return Task.CompletedTask;
+    }
+
     private Class GetClassesFromDataModel(ClassDataModel classDataModel)
     {
         return new Class()

@@ -17,7 +17,7 @@ public class AddStudentUseCase : IAddStudentUseCase
         _countriesRepository = countriesRepository;
         _classesRepository = classesRepository;
     }
-    public async Task Execute(AddStudentRequest request, IPresenter<AddStudentResponse> addStudentPresenter)
+    public async Task Execute(AddStudentRequest request, IPresenter<AddStudentResponse> presenter)
     {
         var studentClass = await _classesRepository.GetById(request.ClassId);
         var studentCountry = await _countriesRepository.GetById(request.CountryId);
@@ -33,7 +33,7 @@ public class AddStudentUseCase : IAddStudentUseCase
         };
         await _studentsRepository.AddStudent(student, Guid.Parse(request.ClassId), Guid.Parse(request.CountryId));
         var cake = await _studentsRepository.GetAllStudents();
-        addStudentPresenter.Success(new AddStudentResponse(student.Id));
+        presenter.Success(new AddStudentResponse(student.Id));
     }
 
     

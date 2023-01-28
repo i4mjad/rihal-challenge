@@ -14,10 +14,10 @@ public class DeleteStudentUseCase : IDeleteStudentUseCase
     {
         _studentsRepository = studentsRepository;
     }
-    public async Task Execute(DeleteStudentRequest request, IPresenter<DeleteStudentResponse> deleteStudentPresenter)
+    public async Task Execute(DeleteStudentRequest request, IPresenter<DeleteStudentResponse> presenter)
     {
         await _studentsRepository.DeleteStudent(request.StudentId);
         
-        deleteStudentPresenter.Success(new DeleteStudentResponse(await _studentsRepository.GetAllStudents()));
+        presenter.Success(new DeleteStudentResponse(await _studentsRepository.GetAllStudents()));
     }
 }

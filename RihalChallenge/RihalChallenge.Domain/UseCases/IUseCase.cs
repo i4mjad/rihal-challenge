@@ -4,7 +4,7 @@
 
 public interface IUseCase<TRequest, TResponse>
 {
-    public Task Execute(TRequest request, IPresenter<TResponse> deleteStudentPresenter);
+    public Task Execute(TRequest request, IPresenter<TResponse> presenter);
 }
 
 public interface IUseCase<TResponse>

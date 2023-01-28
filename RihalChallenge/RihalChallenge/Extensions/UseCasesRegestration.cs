@@ -1,5 +1,9 @@
 ﻿using System.Diagnostics;
+using RihalChallenge.Domain.UseCases.Classes.AddClassUseCase;
+using RihalChallenge.Domain.UseCases.Classes.DeleteClassUseCase;
 using RihalChallenge.Domain.UseCases.Classes.GetClassesUseCase;
+using RihalChallenge.Domain.UseCases.Classes.GetStudentUseCase;
+using RihalChallenge.Domain.UseCases.Classes.UpdateStudentUseCase;
 using RihalChallenge.Domain.UseCases.Countries.GetCountriesUseCase;
 using RihalChallenge.Domain.UseCases.Students.AddStudentUseCase;
 using RihalChallenge.Domain.UseCases.Students.DeleteStudentUseCase;
@@ -23,10 +27,10 @@ public static class UseCasesRegistration
 
         //Classes
         services.AddTransient<IGetClassesUseCase, GetClassesUseCase>();
-        //services.AddTransient<IUpdateClassUseCase, UpdateClassUseCase>();
-        //services.AddTransient<IDeleteClassUseCase, DeleteClassUseCase>();
-        //services.AddTransient<IAddClassUseCase, AddClassUseCase>();
-        //services.AddTransient<IGetClassUseCase, GetClassUseCase>();
+        services.AddTransient<IUpdateClassUseCase, UpdateClassUseCase>();
+        services.AddTransient<IDeleteClassUseCase, DeleteClassUseCase>();
+        services.AddTransient<IAddClassUseCase, AddClassUseCase>();
+        services.AddTransient<IGetClassUseCase, GetClassUseCase>();
         ////Countries
         services.AddTransient<IGetCountriesUseCase, GetCountriesUseCase>();
         //services.AddTransient<IUpdateCountryUseCase, UpdateCountryUseCase>();
