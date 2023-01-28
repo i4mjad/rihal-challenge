@@ -13,6 +13,6 @@ public static class DeleteStudentReducer
     [ReducerMethod]
     public static StudentsState ReduceDeleteStudentResultAction(StudentsState state, DeleteStudentResultAction action)
     {
-        return new StudentsState(state.Students, false,null);
+        return new StudentsState(action.Students, false,null);
     }
 }

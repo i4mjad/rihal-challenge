@@ -20,13 +20,19 @@ public static class UseCasesRegistration
         services.AddTransient<IDeleteStudentUseCase, DeleteStudentUseCase>();
         services.AddTransient<IAddStudentUseCase, AddStudentUseCase>();
         services.AddTransient<IGetStudentUseCase, GetStudentUseCase>();
-        
+
         //Classes
         services.AddTransient<IGetClassesUseCase, GetClassesUseCase>();
-
-        //Countries
+        //services.AddTransient<IUpdateClassUseCase, UpdateClassUseCase>();
+        //services.AddTransient<IDeleteClassUseCase, DeleteClassUseCase>();
+        //services.AddTransient<IAddClassUseCase, AddClassUseCase>();
+        //services.AddTransient<IGetClassUseCase, GetClassUseCase>();
+        ////Countries
         services.AddTransient<IGetCountriesUseCase, GetCountriesUseCase>();
-        
+        //services.AddTransient<IUpdateCountryUseCase, UpdateCountryUseCase>();
+        //services.AddTransient<IDeleteCountryUseCase, DeleteCountryUseCase>();
+        //services.AddTransient<IAddCountryUseCase, AddCountryUseCase>();
+        //services.AddTransient<IGetCountryUseCase, GetCountryUseCase>();
         return services;
     }
 }

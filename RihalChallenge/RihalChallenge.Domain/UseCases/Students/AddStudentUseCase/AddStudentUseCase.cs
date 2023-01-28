@@ -19,19 +19,19 @@ public class AddStudentUseCase : IAddStudentUseCase
     }
     public async Task Execute(AddStudentRequest request, IPresenter<AddStudentResponse> addStudentPresenter)
     {
-        var studentClass = await _classesRepository.GetById(request.classId);
-        var studentCountry = await _countriesRepository.GetById(request.countryId);
+        var studentClass = await _classesRepository.GetById(request.ClassId);
+        var studentCountry = await _countriesRepository.GetById(request.CountryId);
 
         var student = new Student()
         {
             Id = Guid.NewGuid(),
-            StudentName = request.name,
+            StudentName = request.Name,
             ClassName = studentClass.Name,
             CountryName = studentCountry.Name,
-            DayOfBirth = request.dayOfBirth
+            DayOfBirth = request.DayOfBirth
             
         };
-        await _studentsRepository.AddStudent(student, Guid.Parse(request.classId), Guid.Parse(request.countryId));
+        await _studentsRepository.AddStudent(student, Guid.Parse(request.ClassId), Guid.Parse(request.CountryId));
         var cake = await _studentsRepository.GetAllStudents();
         addStudentPresenter.Success(new AddStudentResponse(student.Id));
     }

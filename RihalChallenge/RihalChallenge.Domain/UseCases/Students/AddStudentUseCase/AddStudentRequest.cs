@@ -1,3 +1,3 @@
 ﻿namespace RihalChallenge.Domain.UseCases.Students.AddStudentUseCase;
 
-public record AddStudentRequest(string name, string countryId, string classId, DateTime dayOfBirth);
+public record AddStudentRequest(string Name, string CountryId, string ClassId, DateTime DayOfBirth);
