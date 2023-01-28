@@ -20,7 +20,7 @@ public class AddStudentEffect: Effect<AddStudentAction>
 
     public override async Task HandleAsync(AddStudentAction action, IDispatcher dispatcher)
     {
-        var request = new AddStudentRequest(action.Name, action.CountryId.ToString(), action.ClassId.ToString(),action.Dayofbirth);
+        var request = new AddStudentRequest(action.Name, action.CountryId.ToString(), action.ClassId.ToString(),action.DayofBirth);
         await _addStudentUseCase.Execute(request,_deleteStudentPresenter);
 
         var responseJsonString = _deleteStudentPresenter.GetJsonString();

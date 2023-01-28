@@ -27,7 +27,9 @@ public class AddStudentUseCase : IAddStudentUseCase
             Id = Guid.NewGuid(),
             StudentName = request.name,
             ClassName = studentClass.Name,
-            CountryName = studentCountry.Name
+            CountryName = studentCountry.Name,
+            DayOfBirth = request.dayOfBirth
+            
         };
         await _studentsRepository.AddStudent(student, Guid.Parse(request.classId), Guid.Parse(request.countryId));
         var cake = await _studentsRepository.GetAllStudents();

@@ -5,16 +5,16 @@ namespace RihalChallenge.Client.Forms
     public class ExampleModel
     {
         [Required]
-        public string? Name { get; set; }
+        public string Name { get; set; }
 
         [Required]
-        public Guid? CountryId { get; set; }
+        public Guid CountryId { get; set; }
 
         [Required]
-        public Guid? ClassId { get; set; }
+        public Guid ClassId { get; set; }
 
         [Required]
-        public DateTime? DayOfBirth { get; set; }
+        public DateTime DayOfBirth { get; set; }
 
 
     }

@@ -1,6 +1,5 @@
 ﻿using RihalChallenge.Domain.DataModels;
 using RihalChallenge.Domain.DataSources;
-using RihalChallenge.Domain.Entites;
 using RihalChallenge.Domain.Entities;
 
 namespace RihalChallenge.Domain.Repositories.InMemory;
@@ -40,7 +39,7 @@ public class InMemoryStudentsRepository: IStudentsRepository
             Name = student.StudentName,
             CountryId = countryId,
             ClassId = classId,
-            DayOfBirth = new DateTime(1998,08,28)
+            DayOfBirth = student.DayOfBirth
         };
          _inMemoryDataSource.StudentsDataSet().Add(studentDataModel);
         var cake = _inMemoryDataSource.StudentsDataSet().GetAll();
