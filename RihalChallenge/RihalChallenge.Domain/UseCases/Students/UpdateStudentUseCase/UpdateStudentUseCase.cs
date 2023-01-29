@@ -12,7 +12,6 @@ public class UpdateStudentUseCase : IUpdateStudentUseCase
     }
     public async Task Execute(UpdateStudentRequest request, IPresenter<UpdateStudentResponse> updateStudentPresenter)
     {
-        var student = await _studentsRepository.GetStudent(request.Id);
         await _studentsRepository.UpdateStudent(request.Id, request.NewName, Guid.Parse(request.NewClassId), Guid.Parse(request.NewCountryId), request.NewDayOfBirth);
 
         updateStudentPresenter.Success(new UpdateStudentResponse(request.Id));

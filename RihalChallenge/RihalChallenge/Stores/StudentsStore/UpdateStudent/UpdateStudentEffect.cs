@@ -1,6 +1,6 @@
 using System.Text.Json;
 using Fluxor;
-using RihalChallenge.Client.Models;
+using RihalChallenge.Client.Models.Students;
 using RihalChallenge.Client.Presenters;
 using RihalChallenge.Domain.UseCases.Students.UpdateStudentUseCase;
 
@@ -24,9 +24,9 @@ public class UpdateStudentEffect: Effect<UpdateStudentAction>
         await _addStudentUseCase.Execute(request,_updateStudentPresenter);
 
         var responseJsonString = _updateStudentPresenter.GetJsonString();
-        var deleteStudentClientResponse = JsonSerializer.Deserialize<DeleteStudentClientResponse>(responseJsonString);
+        var updateStudentClientResponse = JsonSerializer.Deserialize<UpdateStudentClientResponse>(responseJsonString);
 
-        if (deleteStudentClientResponse is not null)
+        if (updateStudentClientResponse is not null)
         {
             dispatcher.Dispatch(new UpdateStudentResultAction());
         }

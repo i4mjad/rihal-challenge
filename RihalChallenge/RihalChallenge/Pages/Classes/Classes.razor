@@ -1,0 +1,66 @@
+﻿@page "/classes"
+
+@using RihalChallenge.Client.Stores.ClassesStore
+@using RihalChallenge.Client.Stores.ClassesStore.DeleteClass
+@using RihalChallenge.Client.Stores.ClassesStore.GetClasses
+@inject IDispatcher Dispatcher
+@inject IState<ClassesState> ClassesState
+
+
+<PageTitle>Classes</PageTitle>
+
+<h1>Classes List</h1>
+<NavLink href="/add-class">Add Class</NavLink>
+@if ((bool)ClassesState.Value.IsLoading)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Class Id</th>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var studentsClass in ClassesState.Value.Classes)
+        {
+            <tr>
+                <td>@studentsClass.Id</td>
+                <td>@studentsClass.Name</td>
+                <td>
+                    <button @onclick="() => DeleteClass(studentsClass.Id)">❌</button>
+                    
+                    <NavLink href="@($"/update-class/{studentsClass.Id}")">📝</NavLink>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+
+}
+
+@code {
+    
+    //protected override void OnInitialized()
+    //{
+    //    base.OnInitialized();
+    //    Dispatcher.Dispatch(new GetClassesAction());
+    //}
+
+    protected override Task OnInitializedAsync()
+    {
+        Dispatcher.Dispatch(new GetClassesAction());
+        return base.OnInitializedAsync();
+    }
+
+    protected void DeleteClass(Guid id)
+    {
+        Dispatcher.Dispatch(new DeleteClassAction(id));
+    }
+}
+
+

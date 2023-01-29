@@ -1,4 +1,4 @@
-using RihalChallenge.Client.Stores.ClassesStore;
+using RihalChallenge.Client.Models.Classes;
 
 namespace RihalChallenge.Client.Models;
 

@@ -1,4 +1,5 @@
 using RihalChallenge.Client.Models;
+using RihalChallenge.Client.Models.Classes;
 
 namespace RihalChallenge.Client.Stores.ClassesStore.GetClasses;
 

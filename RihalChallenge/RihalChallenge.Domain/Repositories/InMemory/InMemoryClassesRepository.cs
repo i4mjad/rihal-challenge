@@ -62,6 +62,8 @@ public class InMemoryClassesRepository: IClassesRepository
         };
 
         _inMemoryDataSource.ClassDataSet().Update(currentClass!,updatedClass);
+
+        var classesDataMssodels = _inMemoryDataSource.ClassDataSet().GetAll();
         return Task.CompletedTask;
     }
 

@@ -19,12 +19,7 @@
 <EditForm Model="@formModel" OnValidSubmit="@HandleValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
-    @* *@
-    @* <div> *@
-    @*     <label for="id" class="form-label">Id</label> *@
-    @*     <InputText id="Id" class="form-control disabled" @bind-Value="StudentsState.Value.SelectedStudent.Id">Id</InputText> *@
-    @* </div> *@
-    
+
     <div>
         <label for="name" class="form-label">Name</label>
         <InputText id="name" class="form-control" @bind-Value="formModel.Name"> Name </InputText>

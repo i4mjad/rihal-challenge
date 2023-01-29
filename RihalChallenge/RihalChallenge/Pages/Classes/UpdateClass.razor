@@ -1,0 +1,53 @@
+﻿@page "/update-class/{Id:guid}"
+@using Microsoft.AspNetCore.Components
+@using RihalChallenge.Client.Forms
+@using RihalChallenge.Client.Stores.ClassesStore
+@using RihalChallenge.Client.Stores.ClassesStore.GetClass
+@using RihalChallenge.Client.Stores.ClassesStore.UpdateClass
+
+@inject IDispatcher Dispatcher
+@inject IState<ClassesState> ClassesState
+
+<h3>Update Class</h3>
+
+<EditForm Model="@formModel" OnSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div>
+        <label for="name" class="form-label">Name</label> 
+        <InputText id="name" class="form-control" @bind-Value="formModel.Name"> Name </InputText>
+    </div>
+    <br/>
+    <div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <NavLink class="nav-link" href="classes">
+            <button class="btn btn-secondary">Back</button>
+        </NavLink>
+    </div>
+</EditForm>
+
+@code {
+    
+    [Parameter]
+    public Guid Id { get; set; }
+
+    private UpdateClassFormModel formModel = new();
+    
+    protected override void OnInitialized()
+    {
+        base.OnInitializedAsync();
+        
+        Dispatcher.Dispatch(new GetClassAction(Id));
+        
+        formModel.Name = ClassesState.Value.SelectedClass.Name ?? "";
+        
+        
+    }
+
+    private void HandleValidSubmit()
+    {
+        Dispatcher.Dispatch(new UpdateClassAction(Id,formModel.Name));
+    }
+
+}

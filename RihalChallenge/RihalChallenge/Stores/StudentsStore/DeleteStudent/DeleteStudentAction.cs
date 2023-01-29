@@ -1,7 +1,6 @@
-using Fluxor;
 using RihalChallenge.Client.Models;
 
-namespace RihalChallenge.Client.Stores.StudentsStore;
+namespace RihalChallenge.Client.Stores.StudentsStore.DeleteStudent;
 
 public class DeleteStudentAction
 {

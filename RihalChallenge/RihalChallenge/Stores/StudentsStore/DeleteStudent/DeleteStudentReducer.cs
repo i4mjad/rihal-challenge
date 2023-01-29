@@ -1,6 +1,6 @@
 using Fluxor;
 
-namespace RihalChallenge.Client.Stores.StudentsStore;
+namespace RihalChallenge.Client.Stores.StudentsStore.DeleteStudent;
 
 public static class DeleteStudentReducer
 {
