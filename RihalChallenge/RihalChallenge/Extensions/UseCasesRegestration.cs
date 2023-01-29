@@ -14,7 +14,6 @@ using RihalChallenge.Domain.UseCases.Students.DeleteStudentUseCase;
 using RihalChallenge.Domain.UseCases.Students.GetStudentsUseCase;
 using RihalChallenge.Domain.UseCases.Students.GetStudentUseCase;
 using RihalChallenge.Domain.UseCases.Students.UpdateStudentUseCase;
-using GetStudentsUseCase = RihalChallenge.Domain.UseCases.Students.GetStudentsUseCase.GetStudentsUseCase;
 
 namespace RihalChallenge.Client.Extensions;
 
