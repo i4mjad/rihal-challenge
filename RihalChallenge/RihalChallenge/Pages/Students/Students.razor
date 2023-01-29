@@ -8,13 +8,14 @@
 <PageTitle>Classes</PageTitle>
 
 <h1>Classes List</h1>
-
+<NavLink href="/add-student">Add student</NavLink>
 @if ((bool)StudentState.Value.IsLoading)
 {
     <p><em>Loading...</em></p>
 }
 else
 {
+    
     <table class="table">
         <thead>
         <tr>
