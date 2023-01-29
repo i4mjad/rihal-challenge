@@ -33,6 +33,40 @@ public class InMemoryCountriesRepository: ICountriesRepository
         
     }
 
+    public Task AddCountry(Country country)
+    {
+        _inMemoryDataSource.CountryDataSet().Add(new CountryDataModel()
+        {
+            Id = country.Id,
+            Name = country.Name
+        });
+
+        return Task.CompletedTask;
+    }
+
+    public Task DeleteCountry(Guid countryId)
+    {
+        var getAllCountries = _inMemoryDataSource.CountryDataSet().GetAll();
+        var countryDataModel = getAllCountries.First(x => x.Id == countryId);
+        _inMemoryDataSource.CountryDataSet().Delete(countryDataModel);
+        
+        return Task.CompletedTask;
+    }
+
+    public Task UpdateCountry(Guid id, string newName)
+    {
+        var countriesDataModels = _inMemoryDataSource.CountryDataSet().GetAll();
+        var currentCountry = countriesDataModels.FirstOrDefault(x => x.Id == id);
+        var updatedCountry = new CountryDataModel()
+        {
+            Id = id,
+            Name = newName,
+        };
+
+        _inMemoryDataSource.CountryDataSet().Update(currentCountry!,updatedCountry);
+        return Task.CompletedTask;
+    }
+
     private Country GetCountriesFromDataModel(CountryDataModel countryDataModel)
     {
         return new Country()

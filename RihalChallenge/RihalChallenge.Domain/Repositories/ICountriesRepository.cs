@@ -7,4 +7,7 @@ public interface ICountriesRepository
 {
     public Task<IEnumerable<Country>> GetAllCountries();
     Task<Country> GetById(string countryId);
+    Task AddCountry(Country country);
+    Task DeleteCountry(Guid countryId);
+    Task UpdateCountry(Guid id, string newName);
 }

@@ -14,9 +14,9 @@ public class InMemoryClassesRepository: IClassesRepository
     }
     public Task<IEnumerable<Class>> GetAllClasses()
     {
-        var allStudentsDataModel = _inMemoryDataSource.ClassDataSet().GetAll();
+        var allClassesDataModels = _inMemoryDataSource.ClassDataSet().GetAll();
 
-        return Task.FromResult(allStudentsDataModel.Select(GetClassesFromDataModel));
+        return Task.FromResult(allClassesDataModels.Select(GetClassesFromDataModel));
     }
 
     public Task<Class> GetById(string classId)
@@ -54,14 +54,14 @@ public class InMemoryClassesRepository: IClassesRepository
     public Task UpdateClass(Guid id, string newName)
     {
         var classesDataModels = _inMemoryDataSource.ClassDataSet().GetAll();
-        var currentStudent = classesDataModels.FirstOrDefault(x => x.Id == id);
+        var currentClass = classesDataModels.FirstOrDefault(x => x.Id == id);
         var updatedClass = new ClassDataModel()
         {
             Id = id,
             Name = newName,
         };
 
-        _inMemoryDataSource.ClassDataSet().Update(currentStudent!,updatedClass);
+        _inMemoryDataSource.ClassDataSet().Update(currentClass!,updatedClass);
         return Task.CompletedTask;
     }
 
