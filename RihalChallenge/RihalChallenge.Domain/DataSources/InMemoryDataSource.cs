@@ -1,4 +1,5 @@
 ﻿using RihalChallenge.Domain.DataModels;
+using RihalChallenge.Domain.Entites;
 
 namespace RihalChallenge.Domain.DataSources;
 
@@ -21,48 +22,51 @@ public class InMemoryDataSource: IInMemoryDataSource
             CountryId = Guid.Parse("00304ceb-e0fc-47df-b14b-7c9023f6cf2e"),
             DayOfBirth = new DateTime(1998, 05, 02)
         },};
-        public DataSet<StudentDataModel> StudentsDataSet() => new()
+
+    private static List<ClassDataModel> _classDataModels = new List<ClassDataModel>()
+    {
+        new ClassDataModel()
         {
-            Items = _studentDataModels
-        };
+            Id = Guid.Parse("55e42c1f-2988-4db6-8e37-3a86d7798a67"),
+
+            Name = "History",
+        },
+        new ClassDataModel()
+        {
+            Id = Guid.Parse("b2933bde-d8b9-46ce-b031-c748096368d8"),
+
+            Name = "Math",
+        },
+
+    };
+    
+    private static List<CountryDataModel> _countryDataModels = new List<CountryDataModel>()
+    {
+        new CountryDataModel()
+        {
+            Id = Guid.Parse("42c98f75-ab9b-4a37-8047-7c09648f7971"),
+            Name = "Oman"
+        },
+        new CountryDataModel()
+        {
+            Id = Guid.Parse("00304ceb-e0fc-47df-b14b-7c9023f6cf2e"),
+            Name = "Qatar",
+        },
+
+    };
+    public DataSet<StudentDataModel> StudentsDataSet() => new()
+    {
+        Items = _studentDataModels
+    };
         
     
-
     public DataSet<ClassDataModel> ClassDataSet() => new()
     {
-        Items = new List<ClassDataModel>()
-        {
-            new ClassDataModel()
-            {
-                Id = Guid.Parse("55e42c1f-2988-4db6-8e37-3a86d7798a67"),
-                
-                Name = "History",
-            },
-            new ClassDataModel()
-            {
-                Id = Guid.Parse("b2933bde-d8b9-46ce-b031-c748096368d8"),
-                
-                Name = "Math",
-            },
-
-        }
+        Items = _classDataModels
     };
 
     public DataSet<CountryDataModel> CountryDataSet() => new()
     {
-        Items = new List<CountryDataModel>()
-        {
-            new CountryDataModel()
-            {
-                Id = Guid.Parse("42c98f75-ab9b-4a37-8047-7c09648f7971"),
-                Name = "Oman"
-            },
-            new CountryDataModel()
-            {
-                Id = Guid.Parse("00304ceb-e0fc-47df-b14b-7c9023f6cf2e"),
-                Name = "Qatar",
-            },
-
-        }
+        Items = _countryDataModels
     };
 }

@@ -1,17 +1,14 @@
 ﻿@page "/update-student/{Id:guid}"
 @using Microsoft.AspNetCore.Components
 @using RihalChallenge.Client.Forms
-@using RihalChallenge.Client.Stores.ClassesStore
 @using RihalChallenge.Client.Stores.ClassesStore.GetClasses
 @using RihalChallenge.Client.Stores.Countries
 @using RihalChallenge.Client.Stores.Countries.GetCountries
 @using RihalChallenge.Client.Stores.StudentsStore
-@using RihalChallenge.Client.Stores.StudentsStore.AddStudent
 @using RihalChallenge.Client.Stores.StudentsStore.UpdateStudent
 @inject IDispatcher Dispatcher
-@inject IState<ClassesState> ClassesState
 @inject IState<CountriesState> CountriesState
-@inject IState<StudentsState> StudentsState
+@inject IState<StateStore> StudentsState
 <h3>Update Student</h3>
 
 
@@ -33,7 +30,7 @@
     <div>
         <label for="class">Class</label>
         <InputSelect id="class" @bind-Value="formModel.ClassId" class="form-select">
-            @foreach(var studentClass in ClassesState.Value.Classes)
+            @foreach(var studentClass in StudentsState.Value.Classes)
             {
                 <option value="@studentClass.Id">@studentClass.Name</option>
             }
@@ -73,19 +70,20 @@
     {
         base.OnInitializedAsync();
         
+        Dispatcher.Dispatch(new GetStudentAction(Id));
         Dispatcher.Dispatch(new GetClassesAction());
         Dispatcher.Dispatch(new GetCountriesAction());
-        Dispatcher.Dispatch(new GetStudentAction(Id));
         
-        formModel.Name = StudentsState.Value.SelectedStudent.StudentName;
+            formModel.Name = StudentsState.Value?.SelectedStudent.StudentName;
+
+            var country = CountriesState.Value.Countries.First(x => x.Name == StudentsState.Value.SelectedStudent.CountryName);
+            formModel.CountryId = country.Id;
+
+            formModel.DayOfBirth = StudentsState.Value.SelectedStudent.DayOfBirth;
+
+            var studentsClass = StudentsState.Value.Classes.First(x => x.Name == StudentsState.Value.SelectedStudent.ClassName);
+            formModel.ClassId = studentsClass.Id;
         
-        var country = CountriesState.Value.Countries.First(x=> x.Name == StudentsState.Value.SelectedStudent.CountryName);
-        formModel.CountryId = country.Id;
-        
-        formModel.DayOfBirth = StudentsState.Value.SelectedStudent.DayOfBirth;
-        
-        var studentsClass = ClassesState.Value.Classes.First(x => x.Name == StudentsState.Value.SelectedStudent.ClassName);
-        formModel.ClassId = studentsClass.Id;
     }
 
     private void HandleValidSubmit()

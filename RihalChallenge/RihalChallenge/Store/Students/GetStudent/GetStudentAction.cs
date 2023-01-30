@@ -4,11 +4,11 @@ namespace RihalChallenge.Client.Stores.StudentsStore;
 
 public class GetStudentResultAction
 {
-    public Student Students { get; }
+    public Student Student { get; }
 
     public GetStudentResultAction(Student student)
     {
-        Students = student;
+        Student = student;
     }
 }
 

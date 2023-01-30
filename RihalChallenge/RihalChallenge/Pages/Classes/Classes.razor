@@ -1,17 +1,18 @@
 ﻿@page "/classes"
 
-@using RihalChallenge.Client.Stores.ClassesStore
 @using RihalChallenge.Client.Stores.ClassesStore.DeleteClass
 @using RihalChallenge.Client.Stores.ClassesStore.GetClasses
+@using RihalChallenge.Client.Stores.StudentsStore
+@using Store = RihalChallenge.Client.Stores.StudentsStore.StateStore
 @inject IDispatcher Dispatcher
-@inject IState<ClassesState> ClassesState
+@inject IState<Store> StudentsState
 
 
 <PageTitle>Classes</PageTitle>
 
 <h1>Classes List</h1>
 <NavLink href="/add-class">Add Class</NavLink>
-@if ((bool)ClassesState.Value.IsLoading)
+@if ((bool)StudentsState.Value.IsLoading)
 {
     <p><em>Loading...</em></p>
 }
@@ -26,7 +27,7 @@ else
         </tr>
         </thead>
         <tbody>
-        @foreach (var studentsClass in ClassesState.Value.Classes)
+        @foreach (var studentsClass in StudentsState.Value.Classes)
         {
             <tr>
                 <td>@studentsClass.Id</td>

@@ -5,9 +5,11 @@
 @using RihalChallenge.Client.Stores.ClassesStore.GetClasses
 @using RihalChallenge.Client.Stores.Countries
 @using RihalChallenge.Client.Stores.Countries.GetCountries
+@using RihalChallenge.Client.Stores.StudentsStore
 @using RihalChallenge.Client.Stores.StudentsStore.AddStudent
+@using Store = RihalChallenge.Client.Stores.StudentsStore.StateStore
 @inject IDispatcher Dispatcher
-@inject IState<ClassesState> ClassesState
+@inject IState<Store> StudentsState
 @inject IState<CountriesState> CountriesState
 <h3>Add Student</h3>
 
@@ -16,11 +18,6 @@
 <EditForm Model="@formModel" OnValidSubmit="@HandleValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
-    
-    <div>
-        <label for="name" class="form-label">Name</label>
-        <InputText id="name" class="form-control" @bind-Value="formModel.Name"> Name </InputText>
-    </div>
     <div>
             <label for="name" class="form-label">Name</label>
             <InputText id="name" class="form-control" @bind-Value="formModel.Name"> Name </InputText>
@@ -34,7 +31,7 @@
     <div>
         <label for="class">Class</label>
         <InputSelect id="class" @bind-Value="formModel.ClassId" class="form-select">
-            @foreach(var studentClass in ClassesState.Value.Classes)
+            @foreach(var studentClass in StudentsState.Value.Classes)
             {
                 <option value="@studentClass.Id">@studentClass.Name</option>
             }

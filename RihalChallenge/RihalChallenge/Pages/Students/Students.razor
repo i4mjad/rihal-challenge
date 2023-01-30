@@ -2,8 +2,9 @@
 
 @using RihalChallenge.Client.Stores.StudentsStore
 @using RihalChallenge.Client.Stores.StudentsStore.DeleteStudent
+@using Store = RihalChallenge.Client.Stores.StudentsStore.StateStore
 @inject IDispatcher Dispatcher
-@inject IState<StudentsState> StudentState
+@inject IState<Store> StudentState
 
 
 <PageTitle>Classes</PageTitle>

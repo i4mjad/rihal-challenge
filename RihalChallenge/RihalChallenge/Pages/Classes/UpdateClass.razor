@@ -4,9 +4,11 @@
 @using RihalChallenge.Client.Stores.ClassesStore
 @using RihalChallenge.Client.Stores.ClassesStore.GetClass
 @using RihalChallenge.Client.Stores.ClassesStore.UpdateClass
+@using RihalChallenge.Client.Stores.StudentsStore
+@using Store = RihalChallenge.Client.Stores.StudentsStore.StateStore
 
 @inject IDispatcher Dispatcher
-@inject IState<ClassesState> ClassesState
+@inject IState<Store> StudentsState
 
 <h3>Update Class</h3>
 
@@ -40,7 +42,7 @@
         
         Dispatcher.Dispatch(new GetClassAction(Id));
         
-        formModel.Name = ClassesState.Value.SelectedClass.Name ?? "";
+        formModel.Name = StudentsState.Value.SelectedClass.Name ?? "";
         
         
     }
