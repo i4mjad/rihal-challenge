@@ -2,6 +2,7 @@
 @using RihalChallenge.Client.Store
 @using RihalChallenge.Client.Store.Statistics.GetClassesStatistics
 @using RihalChallenge.Client.Store.Statistics.GetCountriesStatistics
+@using RihalChallenge.Client.Store.Statistics.GetStudentsAgeAverage
 @inject IDispatcher Dispatcher
 @inject IState<StateStore> StateStore
 
@@ -52,7 +53,9 @@ else
         </tbody>
     </table>
     
-    
+    <h2>
+        Students Age Average is: @StateStore.Value.StudentsAgeAverage
+    </h2>
 }
 
 @code {
@@ -62,6 +65,7 @@ else
         base.OnInitialized();
         Dispatcher.Dispatch(new GetClassesStatisticsAction());
         Dispatcher.Dispatch(new GetCountriesStatisticsAction());
+        Dispatcher.Dispatch(new GetStudentsAgeAverageAction());
     }
 
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using RihalChallenge.Domain.Utilities;
 
 namespace RihalChallenge.Domain.Entities;
 public class Student
@@ -8,6 +9,8 @@ public class Student
     public string ClassName { get; set; }
     public string CountryName { get; set; }
     public DateTime DayOfBirth { get; set; }
+
+    public int Age => AgeCalculator.GetAge(DayOfBirth);
 
 }
 

@@ -11,6 +11,7 @@ using RihalChallenge.Domain.UseCases.Countries.GetCountryUseCase;
 using RihalChallenge.Domain.UseCases.Countries.UpdateStudentUseCase;
 using RihalChallenge.Domain.UseCases.Statistics.GetClassesStatistics;
 using RihalChallenge.Domain.UseCases.Statistics.GetCountriesStatistics;
+using RihalChallenge.Domain.UseCases.Statistics.GetStudentsAgeAverage;
 using RihalChallenge.Domain.UseCases.Students.AddStudentUseCase;
 using RihalChallenge.Domain.UseCases.Students.DeleteStudentUseCase;
 using RihalChallenge.Domain.UseCases.Students.GetStudentsUseCase;
@@ -44,6 +45,7 @@ public static class UseCasesRegistration
         //Statistics
         services.AddTransient<IGetClassesStatisticsUseCase, GetClassesStatisticsUseCase>();
         services.AddTransient<IGetCountriesStatisticsUseCase, GetCountriesStatisticsUseCase>();
+        services.AddTransient<IGetStudentsAgeAverageUseCase, GetStudentsAgeAverageUseCase>();
 
         return services;
     }
