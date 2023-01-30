@@ -4,7 +4,7 @@ using RihalChallenge.Client.Models.Classes;
 using RihalChallenge.Client.Presenters;
 using RihalChallenge.Domain.UseCases.Classes.GetStudentUseCase;
 
-namespace RihalChallenge.Client.Stores.ClassesStore.GetClass;
+namespace RihalChallenge.Client.Store.Classes.GetClass;
 
 public class GetClassEffect: Effect<GetClassAction>
 {

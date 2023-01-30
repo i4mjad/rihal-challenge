@@ -1,6 +1,6 @@
-using RihalChallenge.Client.Models;
+using RihalChallenge.Client.Models.Students;
 
-namespace RihalChallenge.Client.Stores.StudentsStore.DeleteStudent;
+namespace RihalChallenge.Client.Store.Students.DeleteStudent;
 
 public class DeleteStudentAction
 {

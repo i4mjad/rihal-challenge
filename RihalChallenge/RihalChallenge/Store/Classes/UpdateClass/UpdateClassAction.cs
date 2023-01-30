@@ -1,4 +1,4 @@
-namespace RihalChallenge.Client.Stores.ClassesStore.UpdateClass;
+namespace RihalChallenge.Client.Store.Classes.UpdateClass;
 
 public class UpdateClassAction
 {

@@ -1,10 +1,10 @@
 using System.Text.Json;
 using Fluxor;
-using RihalChallenge.Client.Models;
+using RihalChallenge.Client.Models.Students;
 using RihalChallenge.Client.Presenters;
 using RihalChallenge.Domain.UseCases.Students.DeleteStudentUseCase;
 
-namespace RihalChallenge.Client.Stores.StudentsStore.DeleteStudent;
+namespace RihalChallenge.Client.Store.Students.DeleteStudent;
 
 public class DeleteStudentEffect: Effect<DeleteStudentAction>
 {

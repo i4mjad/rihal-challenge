@@ -1,6 +1,6 @@
 ﻿using RihalChallenge.Domain.DataModels;
 using RihalChallenge.Domain.DataSources;
-using RihalChallenge.Domain.Entites;
+using RihalChallenge.Domain.Entities;
 
 namespace RihalChallenge.Domain.Repositories.InMemory;
 

@@ -1,4 +1,6 @@
-namespace RihalChallenge.Client.Stores.Countries.GetCountries;
+using RihalChallenge.Client.Models.Countries;
+
+namespace RihalChallenge.Client.Store.Countries.GetCountries;
 
 
 public class GetCountriesResultAction

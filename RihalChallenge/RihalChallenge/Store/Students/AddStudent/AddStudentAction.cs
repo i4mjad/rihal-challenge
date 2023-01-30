@@ -1,7 +1,4 @@
-using Fluxor;
-using RihalChallenge.Client.Models;
-
-namespace RihalChallenge.Client.Stores.StudentsStore.AddStudent;
+namespace RihalChallenge.Client.Store.Students.AddStudent;
 
 public class AddStudentAction
 {

@@ -1,4 +1,4 @@
-﻿namespace RihalChallenge.Domain.Entites;
+﻿namespace RihalChallenge.Domain.Entities;
 
 public class Country
 {

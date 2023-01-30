@@ -1,10 +1,10 @@
 using System.Text.Json;
 using Fluxor;
-using RihalChallenge.Client.Models;
+using RihalChallenge.Client.Models.Students;
 using RihalChallenge.Client.Presenters;
 using RihalChallenge.Domain.UseCases.Students.AddStudentUseCase;
 
-namespace RihalChallenge.Client.Stores.StudentsStore.AddStudent;
+namespace RihalChallenge.Client.Store.Students.AddStudent;
 
 public class AddStudentEffect: Effect<AddStudentAction>
 {

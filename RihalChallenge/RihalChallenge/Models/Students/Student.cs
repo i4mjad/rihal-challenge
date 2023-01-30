@@ -1,4 +1,4 @@
-namespace RihalChallenge.Client.Models;
+namespace RihalChallenge.Client.Models.Students;
 
 public class Student
 {

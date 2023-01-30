@@ -1,19 +1,30 @@
 using Fluxor;
-using RihalChallenge.Client.Stores.ClassesStore;
-using RihalChallenge.Client.Stores.ClassesStore.GetClasses;
 
-namespace RihalChallenge.Client.Stores.Countries.GetCountries;
+namespace RihalChallenge.Client.Store.Countries.GetCountries;
 
 public static class GetCountriesReducers
 {
     [ReducerMethod]
-    public static CountriesState ReduceGetCountriesAction(CountriesState state, GetCountriesResultAction action)
+    public static StateStore ReduceGetCountriesAction(StateStore state, GetCountriesResultAction action)
     {
-        return new CountriesState(isLoading:true, countries:null);
+        return new StateStore(            
+            null,
+            true,
+            null,
+            null,
+            null
+            ,null,
+            null);
     }
     
     [ReducerMethod]
-    public static CountriesState ReduceGetCountriesSuccessAction(CountriesState state, GetCountriesResultAction action) =>
-        new CountriesState(isLoading: false, countries: action.Countries);
+    public static StateStore ReduceGetCountriesSuccessAction(StateStore state, GetCountriesResultAction action) =>
+        new StateStore(            null,
+            false,
+            null,
+            null,
+            state.Classes
+            ,action.Countries,
+            null);
 
 }

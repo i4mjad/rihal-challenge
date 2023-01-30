@@ -1,9 +1,7 @@
 ﻿@page "/classes"
-
-@using RihalChallenge.Client.Stores.ClassesStore.DeleteClass
-@using RihalChallenge.Client.Stores.ClassesStore.GetClasses
-@using RihalChallenge.Client.Stores.StudentsStore
-@using Store = RihalChallenge.Client.Stores.StudentsStore.StateStore
+@using Store = RihalChallenge.Client.Store.StateStore
+@using RihalChallenge.Client.Store.Classes.GetClasses
+@using RihalChallenge.Client.Store.Classes.DeleteClass
 @inject IDispatcher Dispatcher
 @inject IState<Store> StudentsState
 

@@ -1,14 +1,11 @@
 using System.Text.Json;
 using Fluxor;
-using RihalChallenge.Client.Models;
+using RihalChallenge.Client.Models.Classes;
 using RihalChallenge.Client.Presenters;
-using RihalChallenge.Client.Stores.ClassesStore;
-using RihalChallenge.Domain.UseCases;
 using RihalChallenge.Domain.UseCases.Classes.GetClassesUseCase;
 using RihalChallenge.Domain.UseCases.Students.DeleteStudentUseCase;
-using RihalChallenge.Domain.UseCases.Students.GetStudentsUseCase;
 
-namespace RihalChallenge.Client.Stores.ClassesStore.GetClasses;
+namespace RihalChallenge.Client.Store.Classes.GetClasses;
 
 public class GetClassesEffect: Effect<GetClassesAction>
 {

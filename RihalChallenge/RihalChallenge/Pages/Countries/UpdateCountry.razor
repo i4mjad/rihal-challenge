@@ -1,0 +1,53 @@
+﻿@page "/update-country/{Id:guid}"
+@using Microsoft.AspNetCore.Components
+@using RihalChallenge.Client.Forms
+@using RihalChallenge.Client.Store.Countries.GetCountry
+@using RihalChallenge.Client.Store.Countries.UpdateCountry
+@using Store = RihalChallenge.Client.Store.StateStore
+
+@inject IDispatcher Dispatcher
+@inject IState<Store> StateStore
+
+<h3>Update Class</h3>
+
+<EditForm Model="@formModel" OnSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div>
+        <label for="name" class="form-label">Name</label> 
+        <InputText id="name" class="form-control" @bind-Value="formModel.Name"> Name </InputText>
+    </div>
+    <br/>
+    <div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <NavLink class="nav-link" href="countries">
+            <button class="btn btn-secondary">Back</button>
+        </NavLink>
+    </div>
+</EditForm>
+
+@code {
+    
+    [Parameter]
+    public Guid Id { get; set; }
+
+    private UpdateCountryFormModel formModel = new();
+    
+    protected override void OnInitialized()
+    {
+        base.OnInitializedAsync();
+        
+        Dispatcher.Dispatch(new GetCountryAction(Id));
+        
+        formModel.Name = StateStore.Value.SelectedCountry.Name ?? "";
+        
+        
+    }
+
+    private void HandleValidSubmit()
+    {
+        Dispatcher.Dispatch(new UpdateCountryAction(Id,formModel.Name));
+    }
+
+}

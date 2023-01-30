@@ -1,5 +1,4 @@
 ﻿using System;
-using RihalChallenge.Domain.Entites;
 
 namespace RihalChallenge.Domain.Entities;
 public class Student

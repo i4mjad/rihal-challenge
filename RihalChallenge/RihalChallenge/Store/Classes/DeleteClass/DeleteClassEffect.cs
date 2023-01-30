@@ -4,7 +4,7 @@ using RihalChallenge.Client.Models.Classes;
 using RihalChallenge.Client.Presenters;
 using RihalChallenge.Domain.UseCases.Classes.DeleteClassUseCase;
 
-namespace RihalChallenge.Client.Stores.ClassesStore.DeleteClass;
+namespace RihalChallenge.Client.Store.Classes.DeleteClass;
 
 public class DeleteClassEffect: Effect<DeleteClassAction>
 {

@@ -4,7 +4,7 @@ using RihalChallenge.Client.Models.Classes;
 using RihalChallenge.Client.Presenters;
 using RihalChallenge.Domain.UseCases.Classes.UpdateStudentUseCase;
 
-namespace RihalChallenge.Client.Stores.ClassesStore.UpdateClass;
+namespace RihalChallenge.Client.Store.Classes.UpdateClass;
 
 public class UpdateClassEffect: Effect<UpdateClassAction>
 {

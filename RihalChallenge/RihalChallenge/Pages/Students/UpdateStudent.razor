@@ -1,14 +1,14 @@
 ﻿@page "/update-student/{Id:guid}"
 @using Microsoft.AspNetCore.Components
 @using RihalChallenge.Client.Forms
-@using RihalChallenge.Client.Stores.ClassesStore.GetClasses
-@using RihalChallenge.Client.Stores.Countries
-@using RihalChallenge.Client.Stores.Countries.GetCountries
-@using RihalChallenge.Client.Stores.StudentsStore
-@using RihalChallenge.Client.Stores.StudentsStore.UpdateStudent
+@using RihalChallenge.Client.Store
+@using RihalChallenge.Client.Store.Classes.GetClasses
+@using RihalChallenge.Client.Store.Countries.GetCountries
+@using RihalChallenge.Client.Store.Students.GetStudent
+@using RihalChallenge.Client.Store.Students.UpdateStudent
+
 @inject IDispatcher Dispatcher
-@inject IState<CountriesState> CountriesState
-@inject IState<StateStore> StudentsState
+@inject IState<StateStore> StateStore
 <h3>Update Student</h3>
 
 
@@ -30,7 +30,7 @@
     <div>
         <label for="class">Class</label>
         <InputSelect id="class" @bind-Value="formModel.ClassId" class="form-select">
-            @foreach(var studentClass in StudentsState.Value.Classes)
+            @foreach(var studentClass in StateStore.Value.Classes)
             {
                 <option value="@studentClass.Id">@studentClass.Name</option>
             }
@@ -40,7 +40,7 @@
     <div>
         <label for="country">Country</label>
         <InputSelect id="country" class="form-select" @bind-Value="formModel.CountryId">
-            @foreach(var country in CountriesState.Value.Countries)
+            @foreach(var country in StateStore.Value.Countries)
             {
                 <option value="@country.Id">@country.Name</option>
             }
@@ -74,14 +74,14 @@
         Dispatcher.Dispatch(new GetClassesAction());
         Dispatcher.Dispatch(new GetCountriesAction());
         
-            formModel.Name = StudentsState.Value?.SelectedStudent.StudentName;
+            formModel.Name = StateStore.Value?.SelectedStudent.StudentName;
 
-            var country = CountriesState.Value.Countries.First(x => x.Name == StudentsState.Value.SelectedStudent.CountryName);
+            var country = StateStore.Value.Countries.First(x => x.Name == StateStore.Value.SelectedStudent.CountryName);
             formModel.CountryId = country.Id;
 
-            formModel.DayOfBirth = StudentsState.Value.SelectedStudent.DayOfBirth;
+            formModel.DayOfBirth = StateStore.Value.SelectedStudent.DayOfBirth;
 
-            var studentsClass = StudentsState.Value.Classes.First(x => x.Name == StudentsState.Value.SelectedStudent.ClassName);
+            var studentsClass = StateStore.Value.Classes.First(x => x.Name == StateStore.Value.SelectedStudent.ClassName);
             formModel.ClassId = studentsClass.Id;
         
     }
@@ -89,12 +89,13 @@
     private void HandleValidSubmit()
     {
         //TODO: change to update user action
+        Dispatcher.Dispatch(new GetStudentAction(Id));
         Dispatcher.Dispatch(new UpdateStudentAction(Id,formModel.CountryId,formModel.ClassId, formModel.Name, formModel.DayOfBirth));
     }
 
     private string GetId()
     {
-        return StudentsState.Value.SelectedStudent.Id.ToString();
+        return StateStore.Value.SelectedStudent.Id.ToString();
     }
 
 }

@@ -1,11 +1,11 @@
 using System.Text.Json;
 using Fluxor;
-using RihalChallenge.Client.Models;
+using RihalChallenge.Client.Models.Countries;
 using RihalChallenge.Client.Presenters;
 using RihalChallenge.Domain.UseCases.Countries.GetCountriesUseCase;
 using RihalChallenge.Domain.UseCases.Students.DeleteStudentUseCase;
 
-namespace RihalChallenge.Client.Stores.Countries.GetCountries;
+namespace RihalChallenge.Client.Store.Countries.GetCountries;
 
 public class GetCountriesEffect: Effect<GetCountriesAction>
 {

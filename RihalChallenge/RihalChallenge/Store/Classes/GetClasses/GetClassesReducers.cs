@@ -1,20 +1,20 @@
 using Fluxor;
-using RihalChallenge.Client.Stores.StudentsStore;
 
-namespace RihalChallenge.Client.Stores.ClassesStore.GetClasses;
+namespace RihalChallenge.Client.Store.Classes.GetClasses;
 
 public static class GetClassesReducers
 {
     [ReducerMethod]
-    public static StateStore ReduceGetClassesAction(StateStore state, GetClassesResultAction action)
+    public static StateStore ReduceGetClassesAction(StateStore state, GetClassesAction action)
     {
         return new StateStore(
             null,
             true,
             null,
             null,
-            null
-            );
+            null,
+            null,
+            null);
     }
     
     [ReducerMethod]
@@ -24,7 +24,8 @@ public static class GetClassesReducers
             false,
             null,
             null,
-            action.Classes
-            );
+            action.Classes,
+            state.Countries,
+            null);
 
 }

@@ -1,4 +1,4 @@
-namespace RihalChallenge.Client.Stores.ClassesStore.AddClass;
+namespace RihalChallenge.Client.Store.Classes.AddClass;
 
 public class AddClassAction
 {

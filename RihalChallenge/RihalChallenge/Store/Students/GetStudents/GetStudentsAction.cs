@@ -1,6 +1,6 @@
-using RihalChallenge.Client.Models;
+using RihalChallenge.Client.Models.Students;
 
-namespace RihalChallenge.Client.Stores.StudentsStore;
+namespace RihalChallenge.Client.Store.Students.GetStudents;
 
 public class GetStudentsResultAction
 {

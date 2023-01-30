@@ -1,17 +1,16 @@
 ﻿@page "/students"
-
-@using RihalChallenge.Client.Stores.StudentsStore
-@using RihalChallenge.Client.Stores.StudentsStore.DeleteStudent
-@using Store = RihalChallenge.Client.Stores.StudentsStore.StateStore
+@using RihalChallenge.Client.Store
+@using RihalChallenge.Client.Store.Students.DeleteStudent
+@using RihalChallenge.Client.Store.Students.GetStudents
 @inject IDispatcher Dispatcher
-@inject IState<Store> StudentState
+@inject IState<StateStore> StateStore
 
 
 <PageTitle>Classes</PageTitle>
 
 <h1>Classes List</h1>
 <NavLink href="/add-student">Add student</NavLink>
-@if ((bool)StudentState.Value.IsLoading)
+@if ((bool)StateStore.Value.IsLoading)
 {
     <p><em>Loading...</em></p>
 }
@@ -30,7 +29,7 @@ else
         </tr>
         </thead>
         <tbody>
-        @foreach (var student in StudentState.Value.Students)
+        @foreach (var student in StateStore.Value.Students)
         {
             <tr>
                 <td>@student.Id</td>
@@ -56,6 +55,8 @@ else
     {
         //base.OnInitialized();
         Dispatcher.Dispatch(new GetStudentsAction());
+        // Dispatcher.Dispatch(new GetCountriesAction());
+        // Dispatcher.Dispatch(new GetClassesAction());
     }
     
     protected void DeleteStudent(Guid id)

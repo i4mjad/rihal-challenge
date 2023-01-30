@@ -1,7 +1,6 @@
 using Fluxor;
-using RihalChallenge.Client.Stores.StudentsStore;
 
-namespace RihalChallenge.Client.Stores.ClassesStore.UpdateClass;
+namespace RihalChallenge.Client.Store.Classes.UpdateClass;
 
 public static class UpdateClassReducer
 {
@@ -14,7 +13,7 @@ public static class UpdateClassReducer
             null,
             null,
             null
-            );
+            ,null,null);
     }
 
     [ReducerMethod]
@@ -26,6 +25,6 @@ public static class UpdateClassReducer
             null,
             null,
             null
-            );
+            ,null,null);
     }
 }

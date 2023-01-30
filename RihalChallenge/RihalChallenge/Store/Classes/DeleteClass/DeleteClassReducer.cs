@@ -1,7 +1,6 @@
 using Fluxor;
-using RihalChallenge.Client.Stores.StudentsStore;
 
-namespace RihalChallenge.Client.Stores.ClassesStore.DeleteClass;
+namespace RihalChallenge.Client.Store.Classes.DeleteClass;
 
 public static class DeleteClassReducer
 {
@@ -14,7 +13,7 @@ public static class DeleteClassReducer
             null,
             null,
             null
-            );
+            ,null,null);
     }
 
     [ReducerMethod]
@@ -26,6 +25,6 @@ public static class DeleteClassReducer
             null,
             null,
             action.Classes
-            );
+            ,null,null);
     }
 }

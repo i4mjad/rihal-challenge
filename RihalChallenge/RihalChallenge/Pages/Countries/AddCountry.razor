@@ -1,0 +1,35 @@
+﻿@page "/add-country"
+@using Microsoft.AspNetCore.Components
+@using RihalChallenge.Client.Forms
+@using RihalChallenge.Client.Store.Countries.AddCountry
+@inject IDispatcher Dispatcher
+<h3>Add Country</h3>
+
+
+
+<EditForm Model="@formModel" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    
+    <div>
+        <label for="name" class="form-label">Name</label>
+        <InputText id="name" class="form-control" @bind-Value="formModel.Name"> Name </InputText>
+    </div>
+    <div>
+        
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <NavLink class="nav-link" href="countries">
+            <button class="btn btn-secondary">Back</button>
+        </NavLink>
+    </div>
+</EditForm>
+
+@code {
+
+    private AddClassFormModel formModel = new();
+
+    private void HandleValidSubmit()
+    {
+        Dispatcher.Dispatch(new AddCountryAction(formModel.Name));
+    }
+}

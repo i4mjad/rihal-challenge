@@ -4,7 +4,7 @@ using RihalChallenge.Client.Models.Classes;
 using RihalChallenge.Client.Presenters;
 using RihalChallenge.Domain.UseCases.Classes.AddClassUseCase;
 
-namespace RihalChallenge.Client.Stores.ClassesStore.AddClass;
+namespace RihalChallenge.Client.Store.Classes.AddClass;
 
 public class AddClassEffect: Effect<AddClassAction>
 {

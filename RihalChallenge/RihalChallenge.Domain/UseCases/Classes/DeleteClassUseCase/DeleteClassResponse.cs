@@ -1,5 +1,4 @@
-﻿using RihalChallenge.Domain.Entites;
-using RihalChallenge.Domain.Entities;
+﻿using RihalChallenge.Domain.Entities;
 
 namespace RihalChallenge.Domain.UseCases.Classes.DeleteClassUseCase;
 

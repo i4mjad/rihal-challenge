@@ -1,16 +1,12 @@
 ﻿@page "/add-student"
 @using Microsoft.AspNetCore.Components
 @using RihalChallenge.Client.Forms
-@using RihalChallenge.Client.Stores.ClassesStore
-@using RihalChallenge.Client.Stores.ClassesStore.GetClasses
-@using RihalChallenge.Client.Stores.Countries
-@using RihalChallenge.Client.Stores.Countries.GetCountries
-@using RihalChallenge.Client.Stores.StudentsStore
-@using RihalChallenge.Client.Stores.StudentsStore.AddStudent
-@using Store = RihalChallenge.Client.Stores.StudentsStore.StateStore
+@using RihalChallenge.Client.Store
+@using RihalChallenge.Client.Store.Classes.GetClasses
+@using RihalChallenge.Client.Store.Countries.GetCountries
+@using RihalChallenge.Client.Store.Students.AddStudent
 @inject IDispatcher Dispatcher
-@inject IState<Store> StudentsState
-@inject IState<CountriesState> CountriesState
+@inject IState<StateStore> StateStore
 <h3>Add Student</h3>
 
 
@@ -31,7 +27,7 @@
     <div>
         <label for="class">Class</label>
         <InputSelect id="class" @bind-Value="formModel.ClassId" class="form-select">
-            @foreach(var studentClass in StudentsState.Value.Classes)
+            @foreach(var studentClass in StateStore.Value.Classes)
             {
                 <option value="@studentClass.Id">@studentClass.Name</option>
             }
@@ -41,7 +37,7 @@
     <div>
         <label for="country">Country</label>
         <InputSelect id="country" class="form-select" @bind-Value="formModel.CountryId">
-            @foreach(var country in CountriesState.Value.Countries)
+            @foreach(var country in StateStore.Value.Countries)
             {
                 <option value="@country.Id">@country.Name</option>
             }
@@ -66,10 +62,12 @@
     protected override void OnInitialized()
     {
         base.OnInitializedAsync();
-        //Setting the default selected date to today date
-        formModel.DayOfBirth = DateTime.Now;
+        
         Dispatcher.Dispatch(new GetClassesAction());
         Dispatcher.Dispatch(new GetCountriesAction());
+        
+        formModel.DayOfBirth = DateTime.Now;
+        
     }
 
     private void HandleValidSubmit()

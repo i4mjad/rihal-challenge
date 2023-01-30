@@ -1,4 +1,4 @@
-namespace RihalChallenge.Data
+namespace RihalChallenge.Client.Data
 {
     public class WeatherForecast
     {

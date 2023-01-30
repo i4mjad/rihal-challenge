@@ -1,7 +1,6 @@
-using RihalChallenge.Client.Models;
 using RihalChallenge.Client.Models.Classes;
 
-namespace RihalChallenge.Client.Stores.ClassesStore.GetClass;
+namespace RihalChallenge.Client.Store.Classes.GetClass;
 
 public class GetClassResultAction
 {

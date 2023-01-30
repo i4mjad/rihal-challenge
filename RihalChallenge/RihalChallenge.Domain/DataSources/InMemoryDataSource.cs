@@ -1,5 +1,4 @@
 ﻿using RihalChallenge.Domain.DataModels;
-using RihalChallenge.Domain.Entites;
 
 namespace RihalChallenge.Domain.DataSources;
 

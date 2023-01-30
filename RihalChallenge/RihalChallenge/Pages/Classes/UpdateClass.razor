@@ -1,11 +1,9 @@
 ﻿@page "/update-class/{Id:guid}"
 @using Microsoft.AspNetCore.Components
 @using RihalChallenge.Client.Forms
-@using RihalChallenge.Client.Stores.ClassesStore
-@using RihalChallenge.Client.Stores.ClassesStore.GetClass
-@using RihalChallenge.Client.Stores.ClassesStore.UpdateClass
-@using RihalChallenge.Client.Stores.StudentsStore
-@using Store = RihalChallenge.Client.Stores.StudentsStore.StateStore
+@using RihalChallenge.Client.Store.Classes.GetClass
+@using RihalChallenge.Client.Store.Classes.UpdateClass
+@using Store = RihalChallenge.Client.Store.StateStore
 
 @inject IDispatcher Dispatcher
 @inject IState<Store> StudentsState

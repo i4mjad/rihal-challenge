@@ -1,0 +1,59 @@
+﻿@page "/countries"
+@using RihalChallenge.Client.Store.Countries.DeleteCountry
+@using RihalChallenge.Client.Store
+@using RihalChallenge.Client.Store.Countries.GetCountries
+@inject IDispatcher Dispatcher
+@inject IState<StateStore> StateStore
+
+
+<PageTitle>Countries</PageTitle>
+
+<h1>Countries List</h1>
+<NavLink href="/add-country">Add Country</NavLink>
+@if ((bool)StateStore.Value.IsLoading)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Country Id</th>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var country in StateStore.Value.Countries)
+        {
+            <tr>
+                <td>@country.Id</td>
+                <td>@country.Name</td>
+                <td>
+                    <button @onclick="() => DeleteCountry(country.Id)">❌</button>
+                    
+                    <NavLink href="@($"/update-country/{country.Id}")">📝</NavLink>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+
+}
+
+@code {
+
+    protected override Task OnInitializedAsync()
+    {
+        Dispatcher.Dispatch(new GetCountriesAction());
+        return base.OnInitializedAsync();
+    }
+
+    private void DeleteCountry(Guid id)
+    {
+        Dispatcher.Dispatch(new DeleteCountryAction(id));
+    }
+}
+
+

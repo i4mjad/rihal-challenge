@@ -1,5 +1,4 @@
-﻿using RihalChallenge.Domain.Entites;
-using RihalChallenge.Domain.Entities;
+﻿using RihalChallenge.Domain.Entities;
 using RihalChallenge.Domain.Repositories;
 using RihalChallenge.Domain.UseCases.Students.AddStudentUseCase;
 

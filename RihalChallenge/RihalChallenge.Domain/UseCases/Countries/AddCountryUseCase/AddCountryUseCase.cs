@@ -1,4 +1,4 @@
-﻿using RihalChallenge.Domain.Entites;
+﻿using RihalChallenge.Domain.Entities;
 using RihalChallenge.Domain.Repositories;
 namespace RihalChallenge.Domain.UseCases.Countries.AddCountryUseCase;
 
