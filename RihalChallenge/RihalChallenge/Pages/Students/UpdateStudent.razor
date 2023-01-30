@@ -73,16 +73,12 @@
         Dispatcher.Dispatch(new GetStudentAction(Id));
         Dispatcher.Dispatch(new GetClassesAction());
         Dispatcher.Dispatch(new GetCountriesAction());
-        
-            formModel.Name = StateStore.Value?.SelectedStudent.StudentName;
-
-            var country = StateStore.Value.Countries.First(x => x.Name == StateStore.Value.SelectedStudent.CountryName);
-            formModel.CountryId = country.Id;
-
-            formModel.DayOfBirth = StateStore.Value.SelectedStudent.DayOfBirth;
-
-            var studentsClass = StateStore.Value.Classes.First(x => x.Name == StateStore.Value.SelectedStudent.ClassName);
-            formModel.ClassId = studentsClass.Id;
+        formModel.DayOfBirth = StateStore.Value.SelectedStudent.DayOfBirth;
+        formModel.Name = StateStore.Value?.SelectedStudent.StudentName;
+        var country = StateStore.Value.Countries.First(x => x.Name == StateStore.Value.SelectedStudent.CountryName);
+        formModel.CountryId = country.Id;
+        var studentsClass = StateStore.Value?.Classes.First(x => x.Name == StateStore.Value.SelectedStudent.ClassName);
+        formModel.ClassId = studentsClass.Id;
         
     }
 
@@ -92,10 +88,4 @@
         Dispatcher.Dispatch(new GetStudentAction(Id));
         Dispatcher.Dispatch(new UpdateStudentAction(Id,formModel.CountryId,formModel.ClassId, formModel.Name, formModel.DayOfBirth));
     }
-
-    private string GetId()
-    {
-        return StateStore.Value.SelectedStudent.Id.ToString();
-    }
-
 }

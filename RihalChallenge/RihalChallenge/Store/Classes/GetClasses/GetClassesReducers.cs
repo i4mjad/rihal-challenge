@@ -10,11 +10,14 @@ public static class GetClassesReducers
         return new StateStore(
             null,
             true,
+            state.SelectedStudent,
             null,
             null,
             null,
             null,
-            null,null,null,null);
+            null,
+            null,
+            null);
     }
     
     [ReducerMethod]
@@ -22,7 +25,7 @@ public static class GetClassesReducers
         new StateStore(
             null,
             false,
-            null,
+            state.SelectedStudent,
             null,
             action.Classes,
             null,

@@ -10,18 +10,21 @@ public static class GetCountriesReducers
         return new StateStore(            
             null,
             true,
+            state.SelectedStudent,
+            null,
+            state.Classes,
             null,
             null,
-            null
-            ,null,
-            null,null,null,null);
+            null,
+            null,
+            null);
     }
     
     [ReducerMethod]
     public static StateStore ReduceGetCountriesSuccessAction(StateStore state, GetCountriesResultAction action) =>
         new StateStore(            null,
             false,
-            null,
+            state.SelectedStudent,
             null,
             state.Classes
             ,action.Countries,

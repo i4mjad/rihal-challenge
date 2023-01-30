@@ -14,7 +14,10 @@ public static class GetClassesStatisticsReducers
             null,
             null
             ,null,
-            null,null,null,null);
+            null,
+            null,
+            null,
+            null);
     }
     
     [ReducerMethod]
