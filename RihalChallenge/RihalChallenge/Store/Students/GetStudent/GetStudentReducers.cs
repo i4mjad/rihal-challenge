@@ -12,7 +12,7 @@ public static class GetStudentReducers
             true,
             null,
             null,
-            null,null,null);
+            null,null,null,null,null,null);
     }
     
     [ReducerMethod]
@@ -22,6 +22,6 @@ public static class GetStudentReducers
             false,
             action.Student,
             null,
-            null,null,null);
+            null,null,null,null,null,null);
 
 } 

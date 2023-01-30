@@ -13,7 +13,7 @@ public static class GetClassReducers
             null,
             null,
             null
-            ,null,null);
+            ,null,null,null,null,null);
     }
     
     [ReducerMethod]
@@ -24,6 +24,6 @@ public static class GetClassReducers
             null,
             action.Class,
             state.Classes
-            ,null,null);
+            ,null,null,null,null,null);
 
 } 

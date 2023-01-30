@@ -1,0 +1,24 @@
+@page "/statistics"
+@using RihalChallenge.Client.Store
+@inject IDispatcher Dispatcher
+@inject IState<StateStore> StateStore
+
+
+<PageTitle>Statistics</PageTitle>
+
+<h1>Statistics</h1>
+
+@if ((bool)StateStore.Value.IsLoading)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+
+}
+
+@code {
+
+    //TODO: here we will dispatch two actions each one of them will return a type of statistics and an action to get the average age of students 
+    
+}

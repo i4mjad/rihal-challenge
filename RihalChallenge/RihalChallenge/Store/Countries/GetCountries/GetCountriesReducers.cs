@@ -14,7 +14,7 @@ public static class GetCountriesReducers
             null,
             null
             ,null,
-            null);
+            null,null,null,null);
     }
     
     [ReducerMethod]
@@ -25,6 +25,6 @@ public static class GetCountriesReducers
             null,
             state.Classes
             ,action.Countries,
-            null);
+            null,null,null,null);
 
 }

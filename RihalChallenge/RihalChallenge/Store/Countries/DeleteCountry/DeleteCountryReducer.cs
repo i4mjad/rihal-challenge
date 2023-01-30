@@ -13,7 +13,7 @@ public static class DeleteCountryReducer
             null,
             null,
             null
-            ,null,null);
+            ,null,null,null,null,null);
     }
 
     [ReducerMethod]
@@ -25,6 +25,6 @@ public static class DeleteCountryReducer
             null,
             null,
             null
-            ,action.Countries,null);
+            ,action.Countries,null,null,null,null);
     }
 }

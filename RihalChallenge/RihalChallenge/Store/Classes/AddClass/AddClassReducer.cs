@@ -13,7 +13,7 @@ public static class AddClassReducer
             null,
             null,
             null
-            ,null,null);
+            ,null,null,null,null,null);
     }
 
     [ReducerMethod]
@@ -25,6 +25,6 @@ public static class AddClassReducer
             null,
             null,
             null
-            ,null,null);
+            ,null,null,null,null,null);
     }
 }

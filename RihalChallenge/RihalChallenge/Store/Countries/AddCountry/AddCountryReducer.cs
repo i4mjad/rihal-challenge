@@ -12,7 +12,7 @@ public static class AddCountryReducer
             null,
             null,
             null
-            ,null,null);
+            ,null,null,null,null,null);
     }
 
     [ReducerMethod]
@@ -24,6 +24,6 @@ public static class AddCountryReducer
             null,
             null,
             null
-            ,null,null);
+            ,null,null,null,null,null);
     }
 }

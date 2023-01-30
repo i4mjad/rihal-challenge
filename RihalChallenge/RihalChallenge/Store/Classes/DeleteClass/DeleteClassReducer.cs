@@ -13,7 +13,7 @@ public static class DeleteClassReducer
             null,
             null,
             null
-            ,null,null);
+            ,null,null,null,null,null);
     }
 
     [ReducerMethod]
@@ -25,6 +25,6 @@ public static class DeleteClassReducer
             null,
             null,
             action.Classes
-            ,null,null);
+            ,null,null,null,null,null);
     }
 }
