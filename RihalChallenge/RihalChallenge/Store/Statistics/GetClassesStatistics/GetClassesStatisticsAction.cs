@@ -1,7 +1,6 @@
-using RihalChallenge.Client.Models.Classes;
 using RihalChallenge.Client.Models.Statistics;
 
-namespace RihalChallenge.Client.Store.Statstics.GetClass;
+namespace RihalChallenge.Client.Store.Statistics.GetClassesStatistics;
 
 public class GetClassesStatisticsAction
 {

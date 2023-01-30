@@ -1,11 +1,10 @@
 using System.Text.Json;
 using Fluxor;
-using RihalChallenge.Client.Models.Classes;
 using RihalChallenge.Client.Models.Statistics;
 using RihalChallenge.Client.Presenters;
 using RihalChallenge.Domain.UseCases.Statistics.GetClassesStatistics;
 
-namespace RihalChallenge.Client.Store.Statstics.GetClass;
+namespace RihalChallenge.Client.Store.Statistics.GetClassesStatistics;
 
 public class GetClassesStatisticsEffect: Effect<GetClassesStatisticsAction>
 {

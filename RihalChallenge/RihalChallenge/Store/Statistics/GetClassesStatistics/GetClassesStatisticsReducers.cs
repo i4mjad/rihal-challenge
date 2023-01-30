@@ -1,6 +1,6 @@
 using Fluxor;
 
-namespace RihalChallenge.Client.Store.Statstics.GetClass;
+namespace RihalChallenge.Client.Store.Statistics.GetClassesStatistics;
 
 public static class GetClassesStatisticsReducers
 {

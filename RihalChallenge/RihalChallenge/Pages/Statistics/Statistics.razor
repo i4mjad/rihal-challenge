@@ -1,6 +1,7 @@
 @page "/statistics"
 @using RihalChallenge.Client.Store
-@using RihalChallenge.Client.Store.Statstics.GetClass
+@using RihalChallenge.Client.Store.Statistics.GetClassesStatistics
+@using RihalChallenge.Client.Store.Statistics.GetCountriesStatistics
 @inject IDispatcher Dispatcher
 @inject IState<StateStore> StateStore
 
@@ -23,15 +24,35 @@ else
         </tr>
         </thead>
         <tbody>
-        @foreach (var country in StateStore.Value.ClassesStatistics)
+        @foreach (var classStatistics in StateStore.Value.ClassesStatistics)
         {
             <tr>
-                <td>@country.ClassName</td>
+                <td>@classStatistics.ClassName</td>
+                <td>@classStatistics.StudentsNumber</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+    
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Country Name</th>
+            <th>Number of students</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var country in StateStore.Value.CountriesStatistics)
+        {
+            <tr>
+                <td>@country.CountryName</td>
                 <td>@country.StudentsNumber</td>
             </tr>
         }
         </tbody>
     </table>
+    
+    
 }
 
 @code {
@@ -40,6 +61,7 @@ else
     {
         base.OnInitialized();
         Dispatcher.Dispatch(new GetClassesStatisticsAction());
+        Dispatcher.Dispatch(new GetCountriesStatisticsAction());
     }
 
 }
