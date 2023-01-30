@@ -10,64 +10,70 @@
 <h3>Add Student</h3>
 
 
-
-<EditForm Model="@formModel" OnValidSubmit="@HandleValidSubmit">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
-    <div>
+@if ((bool)StateStore.Value.IsLoading)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <EditForm Model="@formModel" OnValidSubmit="@HandleValidSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+        <div>
             <label for="name" class="form-label">Name</label>
             <InputText id="name" class="form-control" @bind-Value="formModel.Name"> Name </InputText>
         </div>
-    <br/>
-    <div>
-        <label for="dob" class="form-label">Day of birth</label>
-        <InputDate id="dob" @bind-Value="formModel.DayOfBirth" class="form-control"> Day of Birth </InputDate>
-    </div>
-    <br/>
-    <div>
-        <label for="class">Class</label>
-        <InputSelect id="class" @bind-Value="formModel.ClassId" class="form-select">
-            @foreach(var studentClass in StateStore.Value.Classes)
-            {
-                <option value="@studentClass.Id">@studentClass.Name</option>
-            }
-        </InputSelect>
-    </div>
-    <br/>
-    <div>
-        <label for="country">Country</label>
-        <InputSelect id="country" class="form-select" @bind-Value="formModel.CountryId">
-            @foreach(var country in StateStore.Value.Countries)
-            {
-                <option value="@country.Id">@country.Name</option>
-            }
-
-        </InputSelect>
-    </div>
         <br/>
-    <div>
+        <div>
+            <label for="dob" class="form-label">Day of birth</label>
+            <InputDate id="dob" @bind-Value="formModel.DayOfBirth" class="form-control"> Day of Birth </InputDate>
+        </div>
+        <br/>
+        <div>
+            <label for="class">Class</label>
+            <InputSelect id="class" @bind-Value="formModel.ClassId" class="form-select">
+                @foreach(var studentClass in StateStore.Value.Classes)
+                {
+                    <option value="@studentClass.Id">@studentClass.Name</option>
+                }
+            </InputSelect>
+        </div>
+        <br/>
+        <div>
+            <label for="country">Country</label>
+            <InputSelect id="country" class="form-select" @bind-Value="formModel.CountryId">
+                @foreach(var country in StateStore.Value.Countries)
+                {
+                    <option value="@country.Id">@country.Name</option>
+                }
+
+            </InputSelect>
+        </div>
+        <br/>
+        <div>
         
-        <button type="submit" class="btn btn-primary">Submit</button>
-        <NavLink class="nav-link" href="students">
-            <button class="btn btn-secondary">Back</button>
-        </NavLink>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <NavLink class="nav-link" href="students">
+                <button class="btn btn-secondary">Back</button>
+            </NavLink>
         
-    </div>
-</EditForm>
+        </div>
+    </EditForm>
+    
+}
 
 @code {
 
     private AddStudentFormModel formModel = new();
     
-    protected override void OnInitialized()
+    protected override Task OnInitializedAsync()
     {
-        base.OnInitializedAsync();
-        
         Dispatcher.Dispatch(new GetClassesAction());
         Dispatcher.Dispatch(new GetCountriesAction());
         
         formModel.DayOfBirth = DateTime.Now;
         
+        return base.OnInitializedAsync();
     }
 
     private void HandleValidSubmit()

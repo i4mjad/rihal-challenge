@@ -25,7 +25,7 @@ public static class GetClassesReducers
             null,
             null,
             action.Classes,
-            state.Countries,
+            null,
             null,null,null,null);
 
 }

@@ -18,13 +18,17 @@ public static class GetClassesStatisticsReducers
     }
     
     [ReducerMethod]
-    public static StateStore ReduceGetClassSuccessAction(StateStore state, GetClassesStatisticsAction action) =>
+    public static StateStore ReduceGetClassSuccessAction(StateStore state, GetClassesStatisticsResultAction action) =>
         new StateStore(
             null,
             false,
             null,
             null,
-            null
-            ,null,null,null,null,null);
+            null,
+            null,
+            null,
+            action.ClassesStatistics,
+            null,
+            null);
 
 } 

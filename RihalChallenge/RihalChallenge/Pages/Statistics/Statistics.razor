@@ -1,5 +1,6 @@
 @page "/statistics"
 @using RihalChallenge.Client.Store
+@using RihalChallenge.Client.Store.Statstics.GetClass
 @inject IDispatcher Dispatcher
 @inject IState<StateStore> StateStore
 
@@ -14,11 +15,31 @@
 }
 else
 {
-
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Class Name</th>
+            <th>Number of students</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var country in StateStore.Value.ClassesStatistics)
+        {
+            <tr>
+                <td>@country.ClassName</td>
+                <td>@country.StudentsNumber</td>
+            </tr>
+        }
+        </tbody>
+    </table>
 }
 
 @code {
 
-    //TODO: here we will dispatch two actions each one of them will return a type of statistics and an action to get the average age of students 
-    
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        Dispatcher.Dispatch(new GetClassesStatisticsAction());
+    }
+
 }

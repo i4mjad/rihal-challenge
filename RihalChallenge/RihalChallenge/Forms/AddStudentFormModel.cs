@@ -8,10 +8,9 @@ namespace RihalChallenge.Client.Forms
 
         [Required] public Guid CountryId { get; set; } 
 
-        [Required]
-        public Guid ClassId { get; set; }
+        [Required] public Guid ClassId { get; set; }
 
-        [Required]
+        [Required] 
         public DateTime DayOfBirth { get; set; } = DateTime.Now;
 
 

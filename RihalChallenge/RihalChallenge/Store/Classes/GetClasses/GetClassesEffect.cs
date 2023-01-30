@@ -3,7 +3,6 @@ using Fluxor;
 using RihalChallenge.Client.Models.Classes;
 using RihalChallenge.Client.Presenters;
 using RihalChallenge.Domain.UseCases.Classes.GetClassesUseCase;
-using RihalChallenge.Domain.UseCases.Students.DeleteStudentUseCase;
 
 namespace RihalChallenge.Client.Store.Classes.GetClasses;
 
@@ -12,7 +11,7 @@ public class GetClassesEffect: Effect<GetClassesAction>
     private readonly IGetClassesUseCase _getClassesUseCase;
     private readonly IBlazorPresenter<GetClassesResponse> _getClassesPresenter;
 
-    public GetClassesEffect(IGetClassesUseCase getClassesUseCase, IBlazorPresenter<GetClassesResponse> getClassesPresenter, IDeleteStudentUseCase deleteStudentUseCase)
+    public GetClassesEffect(IGetClassesUseCase getClassesUseCase, IBlazorPresenter<GetClassesResponse> getClassesPresenter)
     {
         _getClassesUseCase = getClassesUseCase;
         _getClassesPresenter = getClassesPresenter;

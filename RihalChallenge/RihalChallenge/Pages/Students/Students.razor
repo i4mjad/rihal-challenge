@@ -6,10 +6,10 @@
 @inject IState<StateStore> StateStore
 
 
-<PageTitle>Classes</PageTitle>
+<PageTitle>Students</PageTitle>
 
-<h1>Classes List</h1>
-<NavLink href="/add-student">Add student</NavLink>
+<h1>students List</h1>
+<NavLink href="add-student">Add student</NavLink>
 @if ((bool)StateStore.Value.IsLoading)
 {
     <p><em>Loading...</em></p>
