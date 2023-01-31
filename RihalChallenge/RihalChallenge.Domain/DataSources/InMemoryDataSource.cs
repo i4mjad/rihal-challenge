@@ -11,7 +11,7 @@ public class InMemoryDataSource: IInMemoryDataSource
             ClassId = "55e42c1f-2988-4db6-8e37-3a86d7798a67",
             Name = "Humaid",
             CountryId = "42c98f75-ab9b-4a37-8047-7c09648f7971",
-            DayOfBirth = new DateTime(1998, 08, 28)
+            DayOfBirth = new DateTime(1998, 08, 28).ToString()
         },
         new StudentDataModel()
         {
@@ -19,7 +19,7 @@ public class InMemoryDataSource: IInMemoryDataSource
             ClassId = "b2933bde-d8b9-46ce-b031-c748096368d8",
             Name = "Amjad",
             CountryId = "00304ceb-e0fc-47df-b14b-7c9023f6cf2e",
-            DayOfBirth = new DateTime(1998, 05, 02)
+            DayOfBirth = new DateTime(1998, 05, 02).ToString()
         },};
 
     private static List<ClassDataModel> _classDataModels = new List<ClassDataModel>()

@@ -1,4 +1,5 @@
 using System.Data;
+using DatabaseManagment;
 using Fluxor;
 using RihalChallenge.Client.Extensions;
 using RihalChallenge.Client.Presenters;
@@ -14,9 +15,15 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 //TODO: this is going to be change to sqlite implementation of each repository
 builder.Services.AddSingleton<IInMemoryDataSource, InMemoryDataSource>();
-builder.Services.AddSingleton<IStudentsRepository, InMemoryStudentsRepository>();
-builder.Services.AddSingleton<IClassesRepository, InMemoryClassesRepository>();
-builder.Services.AddSingleton<ICountriesRepository, InMemoryCountriesRepository>();
+//builder.Services.AddSingleton<IStudentsRepository, InMemoryStudentsRepository>();
+//builder.Services.AddSingleton<IClassesRepository, InMemoryClassesRepository>();
+//builder.Services.AddSingleton<ICountriesRepository, InMemoryCountriesRepository>();
+
+builder.Services.AddSingleton<IStudentsRepository, SqliteStudentsRepository>();
+builder.Services.AddSingleton<IClassesRepository, SqliteClassesRepository>();
+builder.Services.AddSingleton<ICountriesRepository, SqliteCountriesRepository>();
+
+
 //builder.Services.AddScoped<IDbConnection>();
 builder.Services.AddSingleton(typeof(IBlazorPresenter<>), typeof(BlazorPresenter<>));
 

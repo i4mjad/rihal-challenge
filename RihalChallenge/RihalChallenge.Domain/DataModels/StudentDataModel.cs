@@ -5,7 +5,7 @@ public class StudentDataModel
     public string ClassId { get; set; }
     public string CountryId { get; set; }
     public string Name { get; set; }
-    public DateTime DayOfBirth { get; set; }
+    public string DayOfBirth { get; set; }
 
 }
 

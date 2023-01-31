@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DatabaseManagment\DatabaseManagment.csproj" />
     <ProjectReference Include="..\RihalChallenge.Domain\RihalChallenge.Domain.csproj" />
   </ItemGroup>
 </Project>

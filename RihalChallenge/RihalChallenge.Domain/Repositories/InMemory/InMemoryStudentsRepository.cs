@@ -26,7 +26,7 @@ public class InMemoryStudentsRepository: IStudentsRepository
         return new Student()
         {
             Id = Guid.Parse(studentDataModel.Id),
-            DayOfBirth = studentDataModel.DayOfBirth,
+            DayOfBirth = DateTime.Parse(studentDataModel.DayOfBirth),
             StudentName = studentDataModel.Name,
             ClassName = GetClassName(Guid.Parse(studentDataModel.ClassId)),
             CountryName = GetCountryName(Guid.Parse(studentDataModel.CountryId))
@@ -41,11 +41,13 @@ public class InMemoryStudentsRepository: IStudentsRepository
             Name = student.StudentName,
             CountryId = countryId.ToString(),
             ClassId = classId.ToString(),
-            DayOfBirth = student.DayOfBirth
+            DayOfBirth = student.DayOfBirth.ToString()
         };
          _inMemoryDataSource.StudentsDataSet().Add(studentDataModel);
          return Task.CompletedTask;
     }
+
+
 
     public Task UpdateStudent(Guid id, string newName, Guid newClassId, Guid newCountryId, DateTime newDayOfBirth)
     {
@@ -58,7 +60,7 @@ public class InMemoryStudentsRepository: IStudentsRepository
             CountryId = newCountryId.ToString(),
             Name = newName,
             ClassId = newClassId.ToString(),
-            DayOfBirth = newDayOfBirth
+            DayOfBirth = newDayOfBirth.ToString()
         }; 
         _inMemoryDataSource.StudentsDataSet().Update(currentStudent!,updatedStudent);
 
