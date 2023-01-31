@@ -23,10 +23,10 @@ public class InMemoryCountriesRepository: ICountriesRepository
     {
         
             var countriesDataModels = _inMemoryDataSource.CountryDataSet().GetAll();
-            var countryDataModel = countriesDataModels.First(x => x.Id == Guid.Parse(countryId));
+            var countryDataModel = countriesDataModels.First(x =>Guid.Parse(x.Id) == Guid.Parse(countryId));
             var country = new Country()
             {
-                Id = countryDataModel.Id,
+                Id = Guid.Parse(countryDataModel.Id),
                 Name = countryDataModel.Name
             };
             return Task.FromResult(country);
@@ -37,7 +37,7 @@ public class InMemoryCountriesRepository: ICountriesRepository
     {
         _inMemoryDataSource.CountryDataSet().Add(new CountryDataModel()
         {
-            Id = country.Id,
+            Id = country.Id.ToString(),
             Name = country.Name
         });
 
@@ -47,7 +47,7 @@ public class InMemoryCountriesRepository: ICountriesRepository
     public Task DeleteCountry(Guid countryId)
     {
         var getAllCountries = _inMemoryDataSource.CountryDataSet().GetAll();
-        var countryDataModel = getAllCountries.First(x => x.Id == countryId);
+        var countryDataModel = getAllCountries.First(x =>Guid.Parse(x.Id) == countryId);
         _inMemoryDataSource.CountryDataSet().Delete(countryDataModel);
         
         return Task.CompletedTask;
@@ -56,10 +56,10 @@ public class InMemoryCountriesRepository: ICountriesRepository
     public Task UpdateCountry(Guid id, string newName)
     {
         var countriesDataModels = _inMemoryDataSource.CountryDataSet().GetAll();
-        var currentCountry = countriesDataModels.FirstOrDefault(x => x.Id == id);
+        var currentCountry = countriesDataModels.FirstOrDefault(x => Guid.Parse(x.Id) == id);
         var updatedCountry = new CountryDataModel()
         {
-            Id = id,
+            Id = id.ToString(),
             Name = newName,
         };
 
@@ -71,7 +71,7 @@ public class InMemoryCountriesRepository: ICountriesRepository
     {
         return new Country()
         {
-            Id = countryDataModel.Id,
+            Id = Guid.Parse(countryDataModel.Id),
             Name = countryDataModel.Name
         };
     }

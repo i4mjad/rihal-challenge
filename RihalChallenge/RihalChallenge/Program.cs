@@ -1,3 +1,4 @@
+using System.Data;
 using Fluxor;
 using RihalChallenge.Client.Extensions;
 using RihalChallenge.Client.Presenters;
@@ -16,6 +17,7 @@ builder.Services.AddSingleton<IInMemoryDataSource, InMemoryDataSource>();
 builder.Services.AddSingleton<IStudentsRepository, InMemoryStudentsRepository>();
 builder.Services.AddSingleton<IClassesRepository, InMemoryClassesRepository>();
 builder.Services.AddSingleton<ICountriesRepository, InMemoryCountriesRepository>();
+//builder.Services.AddScoped<IDbConnection>();
 builder.Services.AddSingleton(typeof(IBlazorPresenter<>), typeof(BlazorPresenter<>));
 
 builder.Services.RegisterUseCases();

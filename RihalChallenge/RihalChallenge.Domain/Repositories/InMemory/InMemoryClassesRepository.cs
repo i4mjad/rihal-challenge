@@ -22,10 +22,10 @@ public class InMemoryClassesRepository: IClassesRepository
     public Task<Class> GetById(string classId)
     {
         var classesDataModels = _inMemoryDataSource.ClassDataSet().GetAll();
-        var classDataModel = classesDataModels.First(x => x.Id == Guid.Parse(classId));
+        var classDataModel = classesDataModels.First(x => Guid.Parse(x.Id) == Guid.Parse(classId));
         var model = new Class()
         {
-            Id = classDataModel.Id,
+            Id = Guid.Parse(classDataModel.Id),
             Name = classDataModel.Name
         };
         return Task.FromResult(model);
@@ -35,7 +35,7 @@ public class InMemoryClassesRepository: IClassesRepository
     {
         _inMemoryDataSource.ClassDataSet().Add(new ClassDataModel()
         {
-            Id = newClass.Id,
+            Id = newClass.Id.ToString(),
             Name = newClass.Name
         });
 
@@ -45,7 +45,7 @@ public class InMemoryClassesRepository: IClassesRepository
     public Task DeleteClass(Guid classId)
     {
         var getAllClasses = _inMemoryDataSource.ClassDataSet().GetAll();
-        var classDataModel = getAllClasses.First(x => x.Id == classId);
+        var classDataModel = getAllClasses.First(x => Guid.Parse(x.Id) == classId);
         _inMemoryDataSource.ClassDataSet().Delete(classDataModel);
         
         return Task.CompletedTask;
@@ -54,16 +54,15 @@ public class InMemoryClassesRepository: IClassesRepository
     public Task UpdateClass(Guid id, string newName)
     {
         var classesDataModels = _inMemoryDataSource.ClassDataSet().GetAll();
-        var currentClass = classesDataModels.FirstOrDefault(x => x.Id == id);
+        var currentClass = classesDataModels.FirstOrDefault(x => Guid.Parse(x.Id) == id);
         var updatedClass = new ClassDataModel()
         {
-            Id = id,
+            Id = id.ToString(),
             Name = newName,
         };
 
         _inMemoryDataSource.ClassDataSet().Update(currentClass!,updatedClass);
-
-        var classesDataMssodels = _inMemoryDataSource.ClassDataSet().GetAll();
+        
         return Task.CompletedTask;
     }
 
@@ -71,7 +70,7 @@ public class InMemoryClassesRepository: IClassesRepository
     {
         return new Class()
         {
-            Id = classDataModel.Id,
+            Id = Guid.Parse(classDataModel.Id),
             Name = classDataModel.Name
         };
     }
