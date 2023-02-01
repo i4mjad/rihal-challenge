@@ -24,7 +24,7 @@ public class SqliteCountriesRepository: ICountriesRepository
         return classes.Select(x=> new Country()
         {
             Id = Guid.Parse(x.Id),
-            Name = x.Name
+            CountryName = x.CountryName
         });
     }
 
@@ -37,23 +37,23 @@ public class SqliteCountriesRepository: ICountriesRepository
         var domainModels = datamodels.Select(x => new Country()
         {
             Id = Guid.Parse(x.Id),
-            Name = x.Name
+            CountryName = x.CountryName
         });
         return domainModels.First();
     }
 
     public async Task AddCountry(Country newCountry)
     {
-        var countryDataModel = new
+        var countryDataModel = new CountryDataModel()
         {
             Id = newCountry.Id.ToString(),
-            Name = newCountry.Name
+            CountryName = newCountry.CountryName
         };
 
         using (var cnn = GetConnection())
         {
             cnn.Open();
-            var sqlQuery = $"INSERT INTO Countries (Id, Name) VALUES(@Id, @Name)";
+            var sqlQuery = $"INSERT INTO Countries (Id, CountryName) VALUES(@Id, @CountryName)";
             await cnn.ExecuteAsync(sqlQuery, countryDataModel);
         }
     }
@@ -73,13 +73,13 @@ public class SqliteCountriesRepository: ICountriesRepository
         var countryDataModel = new 
         {
             Id = id.ToString(),
-            Name = newName,
+            CountryName = newName,
         };
 
         using (var cnn = GetConnection())
         {
             cnn.Open();
-            var sqlQuery = "UPDATE Countries SET Name = @Name WHERE Id = @Id";
+            var sqlQuery = "UPDATE Countries SET CountryName = @CountryName WHERE Id = @Id";
             await cnn.ExecuteAsync(sqlQuery, countryDataModel);
         }
     }

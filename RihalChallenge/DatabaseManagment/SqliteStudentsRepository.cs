@@ -19,13 +19,13 @@ namespace DatabaseManagment
             using var cnn = GetConnection();
             cnn.Open();
             
-            var newQuery = "SELECT *" +
+            var query = "SELECT * " +
                                 "FROM Students t1 " +
-                                "JOIN Classes t2 ON t2.Id = t1.ClassId " +
-                                "JOIN Countries t3 ON t3.Id = t1.CountryId";
+                                "FULL OUTER JOIN Classes t2 ON t2.Id = t1.ClassId " +
+                                "FULL OUTER JOIN Countries t3 ON t3.Id = t1.CountryId";
             
             
-            var students = await cnn.QueryAsync<StudentDataModel>(newQuery);
+            var students = await cnn.QueryAsync<StudentDataModel>(query);
             return students.Select(student=>new Student()
             {
                 Id = Guid.Parse(student.Id),

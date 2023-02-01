@@ -28,13 +28,13 @@ public class InMemoryDataSource: IInMemoryDataSource
         {
             Id = "55e42c1f-2988-4db6-8e37-3a86d7798a67",
 
-            Name = "History",
+            ClassName = "History",
         },
         new ClassDataModel()
         {
             Id = "b2933bde-d8b9-46ce-b031-c748096368d8",
 
-            Name = "Math",
+            ClassName = "Math",
         },
 
     };
@@ -44,12 +44,12 @@ public class InMemoryDataSource: IInMemoryDataSource
         new CountryDataModel()
         {
             Id = "42c98f75-ab9b-4a37-8047-7c09648f7971",
-            Name = "Oman"
+            CountryName = "Oman"
         },
         new CountryDataModel()
         {
             Id = "00304ceb-e0fc-47df-b14b-7c9023f6cf2e",
-            Name = "Qatar",
+            CountryName = "Qatar",
         },
 
     };

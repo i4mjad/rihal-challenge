@@ -16,7 +16,7 @@ public class AddCountryUseCase : IAddCountryUseCase
         var country = new Country()
         {
             Id = Guid.NewGuid(),
-            Name = request.Name,
+            CountryName = request.Name,
         };
 
         await _countriesRepository.AddCountry(country);

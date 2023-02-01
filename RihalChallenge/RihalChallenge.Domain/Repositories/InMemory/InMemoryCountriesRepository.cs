@@ -27,7 +27,7 @@ public class InMemoryCountriesRepository: ICountriesRepository
             var country = new Country()
             {
                 Id = Guid.Parse(countryDataModel.Id),
-                Name = countryDataModel.Name
+                CountryName = countryDataModel.CountryName
             };
             return Task.FromResult(country);
         
@@ -38,7 +38,7 @@ public class InMemoryCountriesRepository: ICountriesRepository
         _inMemoryDataSource.CountryDataSet().Add(new CountryDataModel()
         {
             Id = country.Id.ToString(),
-            Name = country.Name
+            CountryName = country.CountryName
         });
 
         return Task.CompletedTask;
@@ -60,7 +60,7 @@ public class InMemoryCountriesRepository: ICountriesRepository
         var updatedCountry = new CountryDataModel()
         {
             Id = id.ToString(),
-            Name = newName,
+            CountryName = newName,
         };
 
         _inMemoryDataSource.CountryDataSet().Update(currentCountry!,updatedCountry);
@@ -72,7 +72,7 @@ public class InMemoryCountriesRepository: ICountriesRepository
         return new Country()
         {
             Id = Guid.Parse(countryDataModel.Id),
-            Name = countryDataModel.Name
+            CountryName = countryDataModel.CountryName
         };
     }
 }

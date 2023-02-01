@@ -26,7 +26,7 @@ public class InMemoryClassesRepository: IClassesRepository
         var model = new Class()
         {
             Id = Guid.Parse(classDataModel.Id),
-            Name = classDataModel.Name
+            Name = classDataModel.ClassName
         };
         return Task.FromResult(model);
     }
@@ -36,7 +36,7 @@ public class InMemoryClassesRepository: IClassesRepository
         _inMemoryDataSource.ClassDataSet().Add(new ClassDataModel()
         {
             Id = newClass.Id.ToString(),
-            Name = newClass.Name
+            ClassName = newClass.Name
         });
 
         return Task.CompletedTask;
@@ -58,7 +58,7 @@ public class InMemoryClassesRepository: IClassesRepository
         var updatedClass = new ClassDataModel()
         {
             Id = id.ToString(),
-            Name = newName,
+            ClassName = newName,
         };
 
         _inMemoryDataSource.ClassDataSet().Update(currentClass!,updatedClass);
@@ -71,7 +71,7 @@ public class InMemoryClassesRepository: IClassesRepository
         return new Class()
         {
             Id = Guid.Parse(classDataModel.Id),
-            Name = classDataModel.Name
+            Name = classDataModel.ClassName
         };
     }
 }

@@ -28,7 +28,7 @@ public class SqliteClassesRepository: IClassesRepository
         return classes.Select(x=>new Class()
         {
             Id = Guid.Parse(x.Id),
-            Name = x.Name
+            Name = x.ClassName
         });
     }
 
@@ -41,7 +41,7 @@ public class SqliteClassesRepository: IClassesRepository
         return queryAsync.Select(x=>new Class()
         {
             Id = Guid.Parse(x.Id),
-            Name = x.Name
+            Name = x.ClassName
         }).First();
     }
 
@@ -50,12 +50,12 @@ public class SqliteClassesRepository: IClassesRepository
         var classDataModel = new
         {
             Id=newClass.Id.ToString(),
-            Name = newClass.Name
+            ClassName = newClass.Name
         };
 
         using var cnn = GetConnection();
         cnn.Open();
-        var sqlQuery = $"INSERT INTO Classes (Id, Name) VALUES(@Id, @Name)";
+        var sqlQuery = $"INSERT INTO Classes (Id, ClassName) VALUES(@Id, @ClassName)";
         await cnn.ExecuteAsync(sqlQuery, classDataModel);
     }
 
@@ -72,12 +72,12 @@ public class SqliteClassesRepository: IClassesRepository
         var classDataModel = new 
         {
             Id = id.ToString(),
-            Name = newName,
+            ClassName = newName,
         };
 
         using var cnn = GetConnection();
         cnn.Open();
-        var sqlQuery = $"UPDATE Classes SET Name = @Name WHERE Id = @Id";
+        var sqlQuery = $"UPDATE Classes SET ClassName = @Name WHERE Id = @Id";
         await cnn.ExecuteAsync(sqlQuery, classDataModel);
     }
 }

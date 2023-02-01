@@ -94,13 +94,13 @@ public class InMemoryStudentsRepository: IStudentsRepository
     {
         var classesDataModels = _inMemoryDataSource.ClassDataSet().GetAll();
         var classDataModel = classesDataModels.First(x => Guid.Parse(x.Id) == classId);
-        return classDataModel.Name;
+        return classDataModel.ClassName;
     }
 
     private string GetCountryName(Guid countryId)
     {
         var countriesDataModels = _inMemoryDataSource.CountryDataSet().GetAll();
         var countryDataModel = countriesDataModels.First(x => Guid.Parse(x.Id) == countryId);
-        return countryDataModel.Name;
+        return countryDataModel.CountryName;
     }
 }
