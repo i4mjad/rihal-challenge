@@ -1,1 +1,1 @@
-# rihal-challenge
+Rihal challenge
