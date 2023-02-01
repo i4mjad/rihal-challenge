@@ -32,7 +32,6 @@ public class AddStudentUseCase : IAddStudentUseCase
             
         };
         await _studentsRepository.AddStudent(student, Guid.Parse(request.ClassId), Guid.Parse(request.CountryId));
-        var cake = await _studentsRepository.GetAllStudents();
         presenter.Success(new AddStudentResponse(student.Id));
     }
 

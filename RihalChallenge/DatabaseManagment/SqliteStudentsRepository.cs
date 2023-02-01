@@ -20,9 +20,10 @@ namespace DatabaseManagment
             cnn.Open();
             
             var query = "SELECT * " +
+                                "" +
                                 "FROM Students t1 " +
-                                "FULL OUTER JOIN Classes t2 ON t2.Id = t1.ClassId " +
-                                "FULL OUTER JOIN Countries t3 ON t3.Id = t1.CountryId";
+                                "JOIN Classes t2 ON t2.Id = t1.ClassId " +
+                                "JOIN Countries t3 ON t3.Id = t1.CountryId";
             
             
             var students = await cnn.QueryAsync<StudentDataModel>(query);
@@ -32,7 +33,7 @@ namespace DatabaseManagment
                 ClassName = student.ClassName,
                 CountryName = student.CountryName,
                 StudentName = student.Name,
-                DayOfBirth = DateTime.Parse(student.DayOfBirth)
+                DayOfBirth = DateTime.Parse(student.DayOfBirth),
             });
         }
 
@@ -50,7 +51,7 @@ namespace DatabaseManagment
             using (var cnn = GetConnection())
             {
                 cnn.Open();
-                var sqlQuery = $"INSERT INTO Students (Id, ClassId, CountryId, Name, DayOfBirth) VALUES(@Id, @ClassId, @CountryId, @Name, @DayOfBirth)";        
+                var sqlQuery = "INSERT INTO Students (Id, ClassId, CountryId, Name, DayOfBirth) VALUES(@Id, @ClassId, @CountryId, @Name, @DayOfBirth)";        
                 await cnn.ExecuteAsync(sqlQuery, studentDataModel);
             }
         }
@@ -69,7 +70,13 @@ namespace DatabaseManagment
             using (var cnn = GetConnection())
             {
                 cnn.Open();
-                var sqlQuery = $"Update Students (Id, ClassId, CountryId, Name, DayOfBirth) VALUES(@Id, @ClassId, @CountryId, @Name, @DayOfBirth)";
+                var sqlQuery = "Update Students " +
+                               "SET CountryId = @CountryId, " +
+                               "Name = @Name, " +
+                               "DayOfBirth = @DayOfBirth, " +
+                               "ClassID = @ClassId, " +
+                               "WHERE Id = @Id";
+                    
                 await cnn.ExecuteAsync(sqlQuery, studentDataModel);
             }
         }
@@ -88,7 +95,7 @@ namespace DatabaseManagment
             using (var cnn = GetConnection())
             {
                 cnn.Open();
-                var sqlQuery = "Delete from Student Where Id = @Id";
+                var sqlQuery = "DELETE from Students Where Id = @Id";
                 await cnn.ExecuteAsync(sqlQuery, new {Id = id.ToString()});
             }
         }
