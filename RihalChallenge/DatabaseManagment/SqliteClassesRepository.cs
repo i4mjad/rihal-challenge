@@ -21,7 +21,6 @@ public class SqliteClassesRepository: IClassesRepository
     {
         
         using var cnn = GetConnection();
-        // SQLitePCL.raw.SetProvider(new SQLitePCL.SQLite3Provider_e_sqlite3());
         cnn.Open();
         var classes = await cnn.QueryAsync<ClassDataModel>(
             "SELECT * from Classes"
@@ -38,34 +37,34 @@ public class SqliteClassesRepository: IClassesRepository
         using var cnn = GetConnection();
         cnn.Open();
         var sqlQuery = "SELECT * FROM Classes Where Id = @Id";
-        var queryAsync = await cnn.QueryAsync<Class>(sqlQuery, new { Id = classId });
-        return queryAsync.First();
+        var queryAsync = await cnn.QueryAsync<ClassDataModel>(sqlQuery, new { Id = classId });
+        return queryAsync.Select(x=>new Class()
+        {
+            Id = Guid.Parse(x.Id),
+            Name = x.Name
+        }).First();
     }
 
     public async Task AddClass(Class newClass)
     {
         var classDataModel = new
         {
-            Id=newClass,
-            nameof = newClass
+            Id=newClass.Id.ToString(),
+            Name = newClass.Name
         };
 
-        using (var cnn = GetConnection())
-        {
-            cnn.Open();
-            var sqlQuery = $"INSERT INTO Classes (Id, Name) VALUES(@Id, @Name)";
-            await cnn.ExecuteAsync(sqlQuery, classDataModel);
-                 }
+        using var cnn = GetConnection();
+        cnn.Open();
+        var sqlQuery = $"INSERT INTO Classes (Id, Name) VALUES(@Id, @Name)";
+        await cnn.ExecuteAsync(sqlQuery, classDataModel);
     }
 
     public async Task DeleteClass(Guid classId)
     {
-        using (var cnn = GetConnection())
-        {
-            cnn.Open();
-            var sqlQuery = "Delete from Classes Where Id = @Id";
-            await cnn.ExecuteAsync(sqlQuery, new { Id = classId.ToString() });
-        }
+        using var cnn = GetConnection();
+        cnn.Open();
+        var sqlQuery = "Delete from Classes Where Id = @Id";
+        await cnn.ExecuteAsync(sqlQuery, new { Id = classId.ToString() });
     }
 
     public async Task UpdateClass(Guid id, string newName)
@@ -76,11 +75,9 @@ public class SqliteClassesRepository: IClassesRepository
             Name = newName,
         };
 
-        using (var cnn = GetConnection())
-        {
-            cnn.Open();
-            var sqlQuery = $"Update Classes (Id, Name) VALUES(@Id, @Name)";
-            await cnn.ExecuteAsync(sqlQuery, classDataModel);
-        }
+        using var cnn = GetConnection();
+        cnn.Open();
+        var sqlQuery = $"UPDATE Classes SET Name = @Name WHERE Id = @Id";
+        await cnn.ExecuteAsync(sqlQuery, classDataModel);
     }
 }

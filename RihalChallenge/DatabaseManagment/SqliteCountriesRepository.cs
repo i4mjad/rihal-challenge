@@ -1,6 +1,7 @@
 ﻿using System.Data;
 using Dapper;
 using Microsoft.Data.Sqlite;
+using RihalChallenge.Domain.DataModels;
 using RihalChallenge.Domain.Entities;
 using RihalChallenge.Domain.Repositories;
 
@@ -10,17 +11,21 @@ public class SqliteCountriesRepository: ICountriesRepository
 {
     private IDbConnection GetConnection()
     {
-        return new SqliteConnection(@"Data Source=./RihalChallengeDB.db;Version=3;New=true;");
+        return new SqliteConnection(@"Data Source=./RihalChallengeDB.db");
     }
 
     public async Task<IEnumerable<Country>> GetAllCountries()
     {
         using var cnn = GetConnection();
         cnn.Open();
-        var classes = await cnn.QueryAsync<Country>(
+        var classes = await cnn.QueryAsync<CountryDataModel>(
             "SELECT * from Countries"
         );
-        return classes;
+        return classes.Select(x=> new Country()
+        {
+            Id = Guid.Parse(x.Id),
+            Name = x.Name
+        });
     }
 
     public async Task<Country> GetById(string countryId)
@@ -28,16 +33,21 @@ public class SqliteCountriesRepository: ICountriesRepository
         using var cnn = GetConnection();
         cnn.Open();
         var sqlQuery = "SELECT * FROM Countries Where Id = @Id";
-        var queryAsync = await cnn.QueryAsync<Country>(sqlQuery, new { Id = countryId });
-        return queryAsync.First();
+        var datamodels = await cnn.QueryAsync<CountryDataModel>(sqlQuery, new { Id = countryId });
+        var domainModels = datamodels.Select(x => new Country()
+        {
+            Id = Guid.Parse(x.Id),
+            Name = x.Name
+        });
+        return domainModels.First();
     }
 
     public async Task AddCountry(Country newCountry)
     {
         var countryDataModel = new
         {
-            Id=newCountry,
-            nameof = newCountry
+            Id = newCountry.Id.ToString(),
+            Name = newCountry.Name
         };
 
         using (var cnn = GetConnection())
@@ -69,7 +79,7 @@ public class SqliteCountriesRepository: ICountriesRepository
         using (var cnn = GetConnection())
         {
             cnn.Open();
-            var sqlQuery = $"Update Countries (Id, Name) VALUES(@Id, @Name)";
+            var sqlQuery = "UPDATE Countries SET Name = @Name WHERE Id = @Id";
             await cnn.ExecuteAsync(sqlQuery, countryDataModel);
         }
     }

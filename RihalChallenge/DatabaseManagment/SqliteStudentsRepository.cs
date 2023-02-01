@@ -12,26 +12,28 @@ namespace DatabaseManagment
     {
         private IDbConnection GetConnection()
         {
-            return new SqliteConnection(@"Data Source=./RihalChallengeDB.db;Version=3;New=true;");
+            return new SqliteConnection(@"Data Source=./RihalChallengeDB.db");
         }
         public async Task<IEnumerable<Student>> GetAllStudents()
         {
             using var cnn = GetConnection();
             cnn.Open();
-            var students = await cnn.QueryAsync<Student>(
-                "SELECT Students.Id AS Id,"+
-                "Students.Name AS Name," +
-                "Students.length, "+
-                "Students.DayOfBirth AS DayOfBirth," +
-                "Students.CountryId AS CountryId," +
-                "Countries.Name AS CountryName," +
-                "Students.ClassId ClassId," +
-                "Classes.Name AS ClassName"+
-                "FROM Students" +
-                "LEFT JOIN Classes ON Students.ClassId = ClassId"+
-                "LEFT JOIN Countries ON Students.CountryId = CountryId"
-            );
-            return students;
+            
+            var newQuery = "SELECT *" +
+                                "FROM Students t1 " +
+                                "JOIN Classes t2 ON t2.Id = t1.ClassId " +
+                                "JOIN Countries t3 ON t3.Id = t1.CountryId";
+            
+            
+            var students = await cnn.QueryAsync<StudentDataModel>(newQuery);
+            return students.Select(student=>new Student()
+            {
+                Id = Guid.Parse(student.Id),
+                ClassName = student.ClassName,
+                CountryName = student.CountryName,
+                StudentName = student.Name,
+                DayOfBirth = DateTime.Parse(student.DayOfBirth)
+            });
         }
 
         public async Task AddStudent(Student student, Guid classId, Guid countryId)
