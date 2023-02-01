@@ -12,7 +12,7 @@ namespace DatabaseManagment
     {
         private IDbConnection GetConnection()
         {
-            return new SqliteConnection(@"Data Source=./RihalChallengeDB.db");
+            return new SqliteConnection(@"Data Source=AppDB.db");
         }
         public async Task<IEnumerable<Student>> GetAllStudents()
         {

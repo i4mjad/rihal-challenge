@@ -12,7 +12,7 @@ public class SqliteClassesRepository: IClassesRepository
 {
     private IDbConnection GetConnection()
     {
-        var dbPath = Path.Combine(Environment.CurrentDirectory, "RihalChallengeDB.db");
+        var dbPath = Path.Combine(Environment.CurrentDirectory, "AppDB.db");
         var connectionString = string.Format("Data Source={0};", dbPath);
         return new SqliteConnection(connectionString);
     }
