@@ -1,3 +1,3 @@
-Rihal challenge
+# Rihal Challenge
 
-- Note: If you face any issue with the Sqlite implementation, switch to In-Memory implementation
+- Note: Make sure you pull the latest version of the code
