@@ -12,7 +12,7 @@ public static class GetCountriesReducers
             true,
             state.SelectedStudent,
             null,
-            state.Classes,
+            null,
             null,
             null,
             null,
@@ -26,8 +26,8 @@ public static class GetCountriesReducers
             false,
             state.SelectedStudent,
             null,
-            state.Classes
-            ,action.Countries,
+            null,
+            action.Countries,
             null,null,null,null);
 
 }

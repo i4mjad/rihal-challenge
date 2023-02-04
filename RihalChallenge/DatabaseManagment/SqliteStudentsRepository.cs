@@ -18,13 +18,8 @@ namespace DatabaseManagment
         {
             using var cnn = GetConnection();
             cnn.Open();
-            
-            var query = "SELECT * " +
-                                "" +
-                                "FROM Students t1 " +
-                                "JOIN Classes t2 ON t2.Id = t1.ClassId " +
-                                "JOIN Countries t3 ON t3.Id = t1.CountryId";
-            
+
+            var query = @"SELECT s.*, c.ClassName AS ClassName, co.CountryName AS CountryName FROM Students s LEFT JOIN Classes c ON s.ClassId = c.Id LEFT JOIN Countries co ON s.CountryId = co.Id";
             
             var students = await cnn.QueryAsync<StudentDataModel>(query);
             return students.Select(student=>new Student()
@@ -74,7 +69,7 @@ namespace DatabaseManagment
                                "SET CountryId = @CountryId, " +
                                "Name = @Name, " +
                                "DayOfBirth = @DayOfBirth, " +
-                               "ClassID = @ClassId, " +
+                               "ClassID = @ClassId " +
                                "WHERE Id = @Id";
                     
                 await cnn.ExecuteAsync(sqlQuery, studentDataModel);
@@ -85,9 +80,23 @@ namespace DatabaseManagment
         {
             using var cnn = GetConnection();
             cnn.Open();
-            var sqlQuery = "SELECT * FROM Students Where Id = @Id";
-            var queryAsync = await cnn.QueryAsync<Student>(sqlQuery, new {Id = id.ToString()});  
-            return queryAsync.First();
+            var sqlQuery =  @"SELECT s.*, c.ClassName AS ClassName, co.CountryName AS CountryName
+                    FROM Students s
+                    LEFT JOIN Classes c ON s.ClassId = c.Id
+                    LEFT JOIN Countries co ON s.CountryId = co.Id
+                    WHERE s.Id = @Id";
+            var queryAsync = await cnn.QueryAsync<StudentDataModel>(sqlQuery, new {Id = id.ToString()});
+
+            var studentDataModel = queryAsync.Select(student => new Student()
+            {
+                Id = Guid.Parse(student.Id),
+                StudentName = student.Name,
+                CountryName = student.CountryName,
+                ClassName = student.ClassName,
+                DayOfBirth = DateTime.Parse(student.DayOfBirth)
+            });
+            
+            return studentDataModel.First();
         }
 
         public async Task DeleteStudent(Guid id)

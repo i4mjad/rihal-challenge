@@ -66,14 +66,13 @@ else
 
     private AddStudentFormModel formModel = new();
     
-    protected override Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
-        Dispatcher.Dispatch(new GetClassesAction());
         Dispatcher.Dispatch(new GetCountriesAction());
+        Dispatcher.Dispatch(new GetClassesAction());
         
         formModel.DayOfBirth = DateTime.Now;
-        
-        return base.OnInitializedAsync();
+        base.OnInitialized();
     }
 
     private void HandleValidSubmit()

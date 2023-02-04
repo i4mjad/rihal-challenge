@@ -10,14 +10,28 @@ public static class UpdateStudentReducer
         return new StateStore(
             state.Students,
             true,
+            state.SelectedStudent,
+            null,
+            state.Classes,
+            state.Countries,
             null,
             null,
-            null,null,null,null,null,null);
+            null,
+            null);
     }
 
     [ReducerMethod]
     public static StateStore ReduceUpdateStudentResultAction(StateStore state, UpdateStudentResultAction action)
     {
-        return new StateStore(state.Students, false, null, null, null,null,null,null,null,null);
+        return new StateStore(state.Students,
+            false,
+            state.SelectedStudent,
+            null,
+            state.Classes,
+            state.Countries,
+            null,
+            null,
+            null,
+            null);
     }
 }

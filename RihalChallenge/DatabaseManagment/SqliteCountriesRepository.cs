@@ -24,7 +24,7 @@ public class SqliteCountriesRepository: ICountriesRepository
         return classes.Select(x=> new Country()
         {
             Id = Guid.Parse(x.Id),
-            CountryName = x.CountryName
+            Name = x.CountryName
         });
     }
 
@@ -37,7 +37,7 @@ public class SqliteCountriesRepository: ICountriesRepository
         var domainModels = datamodels.Select(x => new Country()
         {
             Id = Guid.Parse(x.Id),
-            CountryName = x.CountryName
+            Name = x.CountryName
         });
         return domainModels.First();
     }
@@ -47,7 +47,7 @@ public class SqliteCountriesRepository: ICountriesRepository
         var countryDataModel = new CountryDataModel()
         {
             Id = newCountry.Id.ToString(),
-            CountryName = newCountry.CountryName
+            CountryName = newCountry.Name
         };
 
         using (var cnn = GetConnection())

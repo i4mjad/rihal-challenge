@@ -77,7 +77,7 @@ public class SqliteClassesRepository: IClassesRepository
 
         using var cnn = GetConnection();
         cnn.Open();
-        var sqlQuery = $"UPDATE Classes SET ClassName = @Name WHERE Id = @Id";
+        var sqlQuery = $"UPDATE Classes SET ClassName = @ClassName WHERE Id = @Id";
         await cnn.ExecuteAsync(sqlQuery, classDataModel);
     }
 }

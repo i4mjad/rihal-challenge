@@ -27,7 +27,7 @@ public class AddStudentUseCase : IAddStudentUseCase
             Id = Guid.NewGuid(),
             StudentName = request.Name,
             ClassName = studentClass.Name,
-            CountryName = studentCountry.CountryName,
+            CountryName = studentCountry.Name,
             DayOfBirth = request.DayOfBirth
             
         };

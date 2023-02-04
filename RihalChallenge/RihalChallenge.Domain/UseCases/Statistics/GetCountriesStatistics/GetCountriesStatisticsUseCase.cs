@@ -20,8 +20,8 @@ public class GetCountriesStatisticsUseCase:IGetCountriesStatisticsUseCase
         var statisticsList = new List<CountryStatistics>(){};
         foreach (var country in countries)
         {
-            var studentsWithCountry = students.ToList().Where(student => student.CountryName == country.CountryName).ToList();
-            var countryStatistics = new CountryStatistics(country.CountryName, studentsWithCountry.Count.ToString());
+            var studentsWithCountry = students.ToList().Where(student => student.CountryName == country.Name).ToList();
+            var countryStatistics = new CountryStatistics(country.Name, studentsWithCountry.Count.ToString());
             statisticsList.Add(countryStatistics);
         }
         presenter.Success(new GetCountriesStatisticsResponse(statisticsList));
